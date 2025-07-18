@@ -1,4 +1,4 @@
-﻿namespace Nebx.Verdict.AspNetCore.ValueObjects;
+﻿namespace Nebx.Shared.ValueObjects;
 
 public record Pagination
 {

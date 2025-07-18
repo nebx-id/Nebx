@@ -1,6 +1,6 @@
-﻿using Nebx.Verdict.AspNetCore.ValueObjects;
+﻿using Nebx.Shared.ValueObjects;
 
-namespace Nebx.Verdict.AspNetCore.Dtos;
+namespace Nebx.Shared.Dtos;
 
 public class MetaDto
 {

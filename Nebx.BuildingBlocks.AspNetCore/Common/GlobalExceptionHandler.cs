@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Nebx.BuildingBlocks.AspNetCore.DDD;
-using Nebx.Verdict.AspNetCore.Dtos;
+using Nebx.Shared.Dtos;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Common;
 

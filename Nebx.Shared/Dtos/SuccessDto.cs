@@ -1,4 +1,4 @@
-﻿namespace Nebx.Verdict.AspNetCore.Dtos;
+﻿namespace Nebx.Shared.Dtos;
 
 public static class SuccessDto
 {

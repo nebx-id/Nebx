@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Nebx.Shared\Nebx.Shared.csproj" />
         <ProjectReference Include="..\Nebx.Verdict\Nebx.Verdict.csproj"/>
     </ItemGroup>
 
