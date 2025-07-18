@@ -55,7 +55,7 @@ public static class SwaggerSetup
     /// </code>
     /// </para>
     /// </remarks>
-    internal static void AddSwaggerSetup(this IServiceCollection services, params OpenApiSecurityScheme[] schemes)
+    public static void AddSwaggerSetup(this IServiceCollection services, params OpenApiSecurityScheme[] schemes)
     {
         services.AddSwaggerGen(options =>
         {
