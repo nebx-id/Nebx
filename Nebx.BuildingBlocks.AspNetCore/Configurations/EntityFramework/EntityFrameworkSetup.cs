@@ -22,7 +22,6 @@ public static class EntityFrameworkSetup
     /// This method adds the following interceptors as singletons:
     /// <list type="bullet">
     /// <item><see cref="TimeAuditInterceptor"/> — automatically sets or updates created and modified timestamps.</item>
-    /// <item><see cref="SoftDeleteInterceptor"/> — implements soft delete logic by marking entities as deleted instead of removing them physically.</item>
     /// <item><see cref="DispatchDomainEventInterceptor"/> — automatically dispatches domain events raised by aggregate roots during save operations.</item>
     /// </list>
     /// These interceptors are applied globally to all <see cref="DbContext"/> instances registered in the application.
