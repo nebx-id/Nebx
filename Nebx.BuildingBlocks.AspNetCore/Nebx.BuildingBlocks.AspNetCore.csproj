@@ -13,7 +13,7 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.0.5</Version>
+        <Version>0.0.6</Version>
     </PropertyGroup>
 
     <ItemGroup>

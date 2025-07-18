@@ -69,8 +69,8 @@ public static class BuildingBlockSetup
         services.AddRateLimiterSetup();
         services.AddEndpointExplorerSetup();
 
-        services.AddSwaggerSetup();
-        services.AddSwaggerVersioning();
+        // services.AddSwaggerSetup();
+        // services.AddSwaggerVersioning();
 
         services.AddScoped<IMediator, Mediator>();
         services.AddSingleton<ITimeProvider, TimeProviderImpl>();
@@ -111,7 +111,7 @@ public static class BuildingBlockSetup
         // map endpoint should run before the UseEndpointExplorerSetup to properly load the endpoint documentation
         app.MapEndpoints();
         app.UseEndpointExplorerSetup();
-        app.UseSwaggerSetup();
+        // app.UseSwaggerSetup();
     }
 
     public static void AddModuleSetup(
