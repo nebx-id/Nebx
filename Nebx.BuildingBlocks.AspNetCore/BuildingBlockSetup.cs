@@ -101,6 +101,7 @@ public static class BuildingBlockSetup
     /// </remarks>
     public static void UseBuildingBlockSetup(this WebApplication app, Action<WebApplication>? middleware = null)
     {
+        app.UseExceptionHandler(_ => { });
         app.UseRateLimiter();
         app.UseAntiforgery();
 
