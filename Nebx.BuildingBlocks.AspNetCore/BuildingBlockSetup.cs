@@ -68,7 +68,9 @@ public static class BuildingBlockSetup
         services.AddJsonSerializerSetup();
         services.AddRateLimiterSetup();
         services.AddEndpointExplorerSetup();
+
         services.AddSwaggerSetup();
+        services.AddSwaggerVersioning();
 
         services.AddScoped<IMediator, Mediator>();
         services.AddSingleton<ITimeProvider, TimeProviderImpl>();
