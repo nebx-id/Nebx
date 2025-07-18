@@ -55,7 +55,7 @@ public static class SwaggerSetup
     /// </code>
     /// </para>
     /// </remarks>
-    public static void AddSwaggerSetup(this IServiceCollection services, params OpenApiSecurityScheme[] schemes)
+    internal static void AddSwaggerSetup(this IServiceCollection services, params OpenApiSecurityScheme[] schemes)
     {
         services.AddSwaggerGen(options =>
         {
@@ -120,7 +120,7 @@ public static class SwaggerSetup
     /// app.UseSwaggerSetup();
     /// </code>
     /// </example>
-    public static void UseSwaggerSetup(this WebApplication app)
+    internal static void UseSwaggerSetup(this WebApplication app)
     {
         if (app.Environment.IsProduction())
         {

@@ -60,6 +60,7 @@ public static class BuildingBlockSetup
     public static void AddBuildingBlockSetup(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
+        services.AddAntiforgery();
         services.AddExceptionHandler<GlobalExceptionHandler>();
 
         services.AddEntityFrameworkSetup();
@@ -67,7 +68,7 @@ public static class BuildingBlockSetup
         services.AddJsonSerializerSetup();
         services.AddRateLimiterSetup();
         services.AddEndpointExplorerSetup();
-        services.AddAntiforgery();
+        services.AddSwaggerSetup();
 
         services.AddScoped<IMediator, Mediator>();
         services.AddSingleton<ITimeProvider, TimeProviderImpl>();
@@ -107,6 +108,7 @@ public static class BuildingBlockSetup
         // map endpoint should run before the UseEndpointExplorerSetup to properly load the endpoint documentation
         app.MapEndpoints();
         app.UseEndpointExplorerSetup();
+        app.UseSwaggerSetup();
     }
 
     public static void AddModuleSetup(
