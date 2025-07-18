@@ -4,6 +4,16 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Nebx.BuildingBlocks.AspNetCore</PackageId>
+        <Title>Nebx.BuildingBlocks.AspNetCore</Title>
+        <Authors>Enrico Roselino</Authors>
+        <PackageProjectUrl>https://github.com/nebx-id/Nebx</PackageProjectUrl>
+        <Description>Building blocks to skip the code ceremony</Description>
+        <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
+        <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
+        <RepositoryType>git</RepositoryType>
+        <Version>0.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
