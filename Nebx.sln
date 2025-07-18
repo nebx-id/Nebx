@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.BuildingBlocks.AspNetCore", "Nebx.BuildingBlocks.AspNetCore\Nebx.BuildingBlocks.AspNetCore.csproj", "{A23804EC-CD4B-41D6-91D4-717DDDE062ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Verdict", "Nebx.Verdict\Nebx.Verdict.csproj", "{48E1125A-6691-4103-B5D3-103CB1E9B0E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Verdict.AspNetCore", "Nebx.Verdict.AspNetCore\Nebx.Verdict.AspNetCore.csproj", "{D5CCAA09-82AA-4970-9F13-74526B24BF3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{A23804EC-CD4B-41D6-91D4-717DDDE062ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A23804EC-CD4B-41D6-91D4-717DDDE062ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A23804EC-CD4B-41D6-91D4-717DDDE062ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E1125A-6691-4103-B5D3-103CB1E9B0E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E1125A-6691-4103-B5D3-103CB1E9B0E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E1125A-6691-4103-B5D3-103CB1E9B0E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E1125A-6691-4103-B5D3-103CB1E9B0E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CCAA09-82AA-4970-9F13-74526B24BF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CCAA09-82AA-4970-9F13-74526B24BF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CCAA09-82AA-4970-9F13-74526B24BF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CCAA09-82AA-4970-9F13-74526B24BF3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
