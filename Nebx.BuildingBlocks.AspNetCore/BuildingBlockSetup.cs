@@ -17,6 +17,21 @@ namespace Nebx.BuildingBlocks.AspNetCore;
 
 public static class BuildingBlockSetup
 {
+    public static void AddConfigurationSetup(
+        this WebApplicationBuilder builder,
+        string path,
+        params string[] jsonFiles)
+    {
+        builder.Configuration.SetBasePath(path);
+
+        foreach (var jsonFile in jsonFiles)
+        {
+            builder.Configuration.AddJsonFile(jsonFile);
+        }
+
+        builder.Configuration.AddEnvironmentVariables();
+    }
+    
     /// <summary>
     /// Provides a standard setup for hosting a web application, including default service provider validation
     /// and Kestrel server configuration.
@@ -69,8 +84,8 @@ public static class BuildingBlockSetup
         services.AddRateLimiterSetup();
         services.AddEndpointExplorerSetup();
 
-        // services.AddSwaggerSetup();
-        // services.AddSwaggerVersioning();
+        services.AddSwaggerSetup();
+        services.AddSwaggerVersioning();
 
         services.AddScoped<IMediator, Mediator>();
         services.AddSingleton<ITimeProvider, TimeProviderImpl>();
@@ -111,7 +126,7 @@ public static class BuildingBlockSetup
         // map endpoint should run before the UseEndpointExplorerSetup to properly load the endpoint documentation
         app.MapEndpoints();
         app.UseEndpointExplorerSetup();
-        // app.UseSwaggerSetup();
+        app.UseSwaggerSetup();
     }
 
     public static void AddModuleSetup(
