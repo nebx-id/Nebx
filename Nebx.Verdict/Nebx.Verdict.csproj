@@ -8,10 +8,10 @@
         <PackageId>Nebx.Verdict</PackageId>
         <Title>Nebx.Verdict</Title>
         <Authors>Enrico Roselino</Authors>
-        <PackageProjectUrl>https://github.com/nebx-id/nebx</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/nebx-id/Nebx</PackageProjectUrl>
         <Description>Yet another result pattern inspired from altmann/FluentResults and ardalis/Result.</Description>
-        <RepositoryUrl>https://github.com/nebx-id/Verdict</RepositoryUrl>
-        <License>https://raw.githubusercontent.com/nebx-id/Verdict/refs/heads/main/LICENSE</License>
+        <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
+        <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
         <Version>0.1.4</Version>
     </PropertyGroup>
