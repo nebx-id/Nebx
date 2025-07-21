@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
@@ -108,9 +109,19 @@ public static class EntityFrameworkSetup
         services.AddDbContext<TDbContext>((sp, options) =>
         {
             dbContextOptions.Invoke(sp, options);
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
+            var environment = sp.GetRequiredService<IWebHostEnvironment>();
+            var interceptor = sp.GetServices<ISaveChangesInterceptor>();
+            
+            options.AddInterceptors(interceptor);
             options.LogTo(Console.WriteLine, (_, level) => level == LogLevel.Debug);
+            options.EnableDetailedErrors();
+
+            
+            if (environment.IsDevelopment())
+            {
+                options.EnableSensitiveDataLogging();
+            }
         });
 
         services.AddScoped<IUnitOfWork<TDbContext>, UnitOfWork<TDbContext>>();
