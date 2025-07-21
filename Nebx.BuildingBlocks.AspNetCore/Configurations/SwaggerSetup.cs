@@ -85,7 +85,7 @@ public static class SwaggerSetup
     /// Registering it multiple times may lead to duplicate or conflicting Swagger version configurations.
     /// </para>
     /// </remarks>
-    public static void AddSwaggerVersioning(this IServiceCollection services)
+    internal static void AddSwaggerVersioning(this IServiceCollection services)
     {
         services.ConfigureOptions<VersioningConfigureOptions>();
     }

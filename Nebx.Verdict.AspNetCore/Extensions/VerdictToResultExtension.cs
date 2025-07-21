@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Nebx.Shared.Dtos;
 using Nebx.Verdict.AspNetCore.Constants;
-using Nebx.Verdict.AspNetCore.Dtos;
 
 namespace Nebx.Verdict.AspNetCore.Extensions;
 

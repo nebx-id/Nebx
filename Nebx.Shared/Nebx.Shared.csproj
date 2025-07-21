@@ -12,7 +12,12 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.0.1</Version>
+        <Version>0.0.3</Version>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Serilog" Version="4.3.0" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    </ItemGroup>
 
 </Project>

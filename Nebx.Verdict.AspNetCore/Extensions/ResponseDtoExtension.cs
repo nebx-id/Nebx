@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Nebx.Verdict.AspNetCore.Dtos;
+using Nebx.Shared.Dtos;
 
 namespace Nebx.Verdict.AspNetCore.Extensions;
 

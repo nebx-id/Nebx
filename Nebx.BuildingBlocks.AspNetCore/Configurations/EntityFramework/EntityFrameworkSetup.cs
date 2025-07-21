@@ -26,7 +26,7 @@ public static class EntityFrameworkSetup
     /// </list>
     /// These interceptors are applied globally to all <see cref="DbContext"/> instances registered in the application.
     /// </remarks>
-    public static void AddEntityFrameworkSetup(this IServiceCollection services)
+    internal static void AddEntityFrameworkSetup(this IServiceCollection services)
     {
         services.AddScoped<ISaveChangesInterceptor, TimeAuditInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();

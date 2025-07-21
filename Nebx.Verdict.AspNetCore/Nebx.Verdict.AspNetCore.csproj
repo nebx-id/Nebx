@@ -13,7 +13,7 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.1.4</Version>
+        <Version>0.1.5</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Nebx.Shared\Nebx.Shared.csproj" />
         <ProjectReference Include="..\Nebx.Verdict\Nebx.Verdict.csproj"/>
     </ItemGroup>
 

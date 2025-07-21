@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Nebx.Verdict.AspNetCore.Dtos;
+using Nebx.Shared.Dtos;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Configurations;
 
