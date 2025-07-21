@@ -116,7 +116,6 @@ public static class EntityFrameworkSetup
             options.AddInterceptors(interceptor);
             options.LogTo(Console.WriteLine, (_, level) => level == LogLevel.Debug);
             options.EnableDetailedErrors();
-
             
             if (environment.IsDevelopment())
             {
