@@ -112,11 +112,11 @@ public static class EntityFrameworkSetup
 
             var environment = sp.GetRequiredService<IWebHostEnvironment>();
             var interceptor = sp.GetServices<ISaveChangesInterceptor>();
-            
+
             options.AddInterceptors(interceptor);
             options.LogTo(Console.WriteLine, (_, level) => level == LogLevel.Debug);
             options.EnableDetailedErrors();
-            
+
             if (environment.IsDevelopment())
             {
                 options.EnableSensitiveDataLogging();
