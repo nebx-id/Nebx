@@ -3,8 +3,20 @@ using Microsoft.AspNetCore.Http;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Extensions.FluentValidation;
 
+/// <summary>
+/// Provides common validation rules for <see cref="IFormFile"/> inputs.
+/// </summary>
 public static class FormFileValidation
 {
+    /// <summary>
+    /// Adds a validation rule that ensures the uploaded file has one of the specified allowed extensions.
+    /// </summary>
+    /// <typeparam name="T">The type of the object being validated.</typeparam>
+    /// <param name="ruleBuilder">The rule builder.</param>
+    /// <param name="extensions">The list of allowed file extensions (including the dot, e.g., ".jpg").</param>
+    /// <returns>
+    /// The rule builder options for further configuration.
+    /// </returns>
     public static IRuleBuilderOptions<T, IFormFile> AllowedExtensions<T>(
         this IRuleBuilder<T, IFormFile> ruleBuilder,
         params string[] extensions)
@@ -20,6 +32,18 @@ public static class FormFileValidation
             .WithMessage($"Only {allowedExt} are allowed.");
     }
 
+    /// <summary>
+    /// Adds a validation rule that ensures the uploaded file has a valid file name and path.
+    /// </summary>
+    /// <typeparam name="T">The type of the object being validated.</typeparam>
+    /// <param name="ruleBuilder">The rule builder.</param>
+    /// <returns>
+    /// The rule builder options for further configuration.
+    /// </returns>
+    /// <remarks>
+    /// This rule checks that the file name length is within 255 characters, does not contain invalid characters,
+    /// and does not include any path traversal or directory segments.
+    /// </remarks>
     public static IRuleBuilderOptions<T, IFormFile> ValidPath<T>(this IRuleBuilder<T, IFormFile> ruleBuilder)
     {
         const int length = 255;
@@ -33,6 +57,14 @@ public static class FormFileValidation
             .WithMessage("File name is invalid.");
     }
 
+    /// <summary>
+    /// Adds a validation rule that ensures the uploaded file is not empty and has a valid content type.
+    /// </summary>
+    /// <typeparam name="T">The type of the object being validated.</typeparam>
+    /// <param name="ruleBuilder">The rule builder.</param>
+    /// <returns>
+    /// The rule builder options for further configuration.
+    /// </returns>
     public static IRuleBuilderOptions<T, IFormFile> NotEmpty<T>(this IRuleBuilder<T, IFormFile> ruleBuilder)
     {
         return ruleBuilder
