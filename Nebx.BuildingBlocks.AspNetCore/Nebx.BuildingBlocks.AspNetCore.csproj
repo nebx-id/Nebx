@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageId>Nebx.BuildingBlocks.AspNetCore</PackageId>
         <Title>Nebx.BuildingBlocks.AspNetCore</Title>
         <Authors>Enrico Roselino</Authors>
@@ -13,8 +14,12 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.0.7</Version>
+        <Version>0.0.8</Version>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="lib\$(TargetFramework)"/>
+    </ItemGroup>
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
