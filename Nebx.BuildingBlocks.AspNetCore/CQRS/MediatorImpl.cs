@@ -2,11 +2,11 @@
 
 namespace Nebx.BuildingBlocks.AspNetCore.CQRS;
 
-public class Mediator : IMediator
+public class MediatorImpl : IMediator
 {
     private readonly MediatR.IMediator _mediator;
 
-    public Mediator(MediatR.IMediator mediator)
+    public MediatorImpl(MediatR.IMediator mediator)
     {
         _mediator = mediator;
     }

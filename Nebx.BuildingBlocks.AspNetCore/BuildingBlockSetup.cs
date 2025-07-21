@@ -87,7 +87,7 @@ public static class BuildingBlockSetup
         services.AddSwaggerSetup();
         services.AddSwaggerVersioning();
 
-        services.AddScoped<IMediator, Mediator>();
+        services.AddScoped<IMediator, MediatorImpl>();
         services.AddSingleton<ITimeProvider, TimeProviderImpl>();
     }
 
