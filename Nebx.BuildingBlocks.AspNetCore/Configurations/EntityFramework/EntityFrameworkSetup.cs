@@ -117,7 +117,7 @@ public static class EntityFrameworkSetup
             options.LogTo(Console.WriteLine, (_, level) => level == LogLevel.Debug);
             options.EnableDetailedErrors();
 
-            if (environment.IsDevelopment())
+            if (!environment.IsProduction())
             {
                 options.EnableSensitiveDataLogging();
             }
