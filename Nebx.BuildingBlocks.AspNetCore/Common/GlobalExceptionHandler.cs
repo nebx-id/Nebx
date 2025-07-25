@@ -40,6 +40,7 @@ public class GlobalExceptionHandler : IExceptionHandler
             _ => StatusCodes.Status500InternalServerError
         };
 
+        httpContext.Response.StatusCode = statusCode;
         var errorResponse = ErrorDto.Create(message, statusCode);
         errorResponse.SetPath(httpContext.Request.Path);
         errorResponse.SetRequestId(httpContext.TraceIdentifier);
