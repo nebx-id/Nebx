@@ -13,10 +13,10 @@ public static class SuccessDto
     }
 }
 
-public class SuccessDto<T>
+public record SuccessDto<T>
 {
-    public T? Data { get; internal set; }
-    public MetaDto? Meta { get; private set; }
+    public T? Data { get; internal init; }
+    public MetaDto? Meta { get; private init; }
 
     internal SuccessDto(T? data)
     {
