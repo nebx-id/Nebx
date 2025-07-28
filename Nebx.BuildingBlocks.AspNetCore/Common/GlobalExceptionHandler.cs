@@ -41,9 +41,9 @@ public class GlobalExceptionHandler : IExceptionHandler
         };
 
         httpContext.Response.StatusCode = statusCode;
-        var errorResponse = ErrorDto.Create(message, statusCode);
-        errorResponse.SetPath(httpContext.Request.Path);
-        errorResponse.SetRequestId(httpContext.TraceIdentifier);
+        var path = httpContext.Request.Path;
+        var requestId = httpContext.TraceIdentifier;
+        var errorResponse = ErrorDto.Create(message, statusCode, path, requestId);
 
         switch (exception)
         {
