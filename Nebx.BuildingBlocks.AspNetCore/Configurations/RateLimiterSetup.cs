@@ -38,9 +38,10 @@ public static class RateLimiterSetup
             options.OnRejected = (context, token) =>
             {
                 const string message = "You have exceeded the allowed request limit, please try again later.";
-                var errorResponse = ErrorDto.Create(message, statusCode);
-                errorResponse.SetPath(context.HttpContext.Request.Path);
-                errorResponse.SetRequestId(context.HttpContext.TraceIdentifier);
+
+                var path = context.HttpContext.Request.Path;
+                var requestId = context.HttpContext.TraceIdentifier;
+                var errorResponse = ErrorDto.Create(message, statusCode, path, requestId);
 
                 context.HttpContext.Response.StatusCode = statusCode;
                 context.HttpContext.Response.ContentType = "application/json";
