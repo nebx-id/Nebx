@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,6 +73,26 @@ public static class BuildingBlockSetup
         });
     }
 
+    /// <summary>
+    /// Registers core building block services and configurations into the dependency injection container.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
+    /// <param name="configuration">The application configuration instance used for setup.</param>
+    /// <remarks>
+    /// This method centralizes the setup of essential application components such as:
+    /// <list type="bullet">
+    /// <item><description><see cref="IHttpContextAccessor"/> support</description></item>
+    /// <item><description>Anti-forgery protection</description></item>
+    /// <item><description>Global exception handling using <c>GlobalExceptionHandler</c></description></item>
+    /// <item><description>Entity Framework configuration via <c>AddEntityFrameworkSetup()</c></description></item>
+    /// <item><description>Custom JSON serialization setup</description></item>
+    /// <item><description>Rate limiting setup</description></item>
+    /// <item><description>API endpoint explorer registration</description></item>
+    /// <item><description>Swagger documentation and versioning</description></item>
+    /// <item><description><see cref="IMediator"/> implementation registration</description></item>
+    /// <item><description><see cref="ITimeProvider"/> implementation registration</description></item>
+    /// </list>
+    /// </remarks>
     public static void AddBuildingBlockSetup(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddHttpContextAccessor();
