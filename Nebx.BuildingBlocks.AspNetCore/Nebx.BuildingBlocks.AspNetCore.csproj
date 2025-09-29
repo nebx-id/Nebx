@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PackageId>Nebx.BuildingBlocks.AspNetCore</PackageId>
+        <Title>Nebx.BuildingBlocks.AspNetCore</Title>
+        <Authors>Enrico Roselino</Authors>
+        <PackageProjectUrl>https://github.com/nebx-id/Nebx</PackageProjectUrl>
+        <Description>Building blocks to skip the code ceremony</Description>
+        <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
+        <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
+        <RepositoryType>git</RepositoryType>
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="lib\$(TargetFramework)"/>
+        <None Remove="Configurations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.66"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0"/>
+        <PackageReference Include="Funcky" Version="3.5.1" />
+        <PackageReference Include="MailKit" Version="4.14.0" />
+        <PackageReference Include="MediatR" Version="12.5.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.9" />
+        <PackageReference Include="Quartz.AspNetCore" Version="3.15.0" />
+        <PackageReference Include="System.Text.Encodings.Web" Version="9.0.9" />
+        <PackageReference Include="WebDav.Client" Version="2.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Configurations\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Configurations\**" />
+    </ItemGroup>
+
+</Project>
