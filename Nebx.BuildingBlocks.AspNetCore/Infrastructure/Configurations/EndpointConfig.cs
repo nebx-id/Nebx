@@ -31,7 +31,7 @@ public static class EndpointConfig
     /// </summary>
     /// <param name="app">The <see cref="WebApplication" /> to map routes for.</param>
     /// <param name="routeGroupBuilder">An optional <see cref="RouteGroupBuilder" /> to group endpoints under a common route.</param>
-    internal static void MapEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
+    public static void MapEndpoints(this WebApplication app, RouteGroupBuilder? routeGroupBuilder = null)
     {
         IEndpointRouteBuilder routeBuilder = routeGroupBuilder is null ? app : routeGroupBuilder;
 

@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nebx.BuildingBlocks.AspNetCore.Data.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Exceptions;
+using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Configurations;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Implementations;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces;
 using Nebx.BuildingBlocks.AspNetCore.Models;
@@ -25,7 +26,7 @@ public static class AppConfiguration
         builder.Host.AddHostConfiguration();
         builder.WebHost.AddIWebHostConfiguration();
         builder.Services.AddServicesConfiguration();
-        
+
         return builder;
     }
 
@@ -100,7 +101,6 @@ public static class AppConfiguration
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
 
         services.AddExceptionHandler<GlobalExceptionHandler>();
-
         return services;
     }
 
@@ -108,11 +108,6 @@ public static class AppConfiguration
     {
         app.UseExceptionHandler(_ => { });
         app.UseAntiforgery();
-
-        if (!app.Environment.IsProduction())
-        {
-            app.MapOpenApi();
-        }
 
         return app;
     }
