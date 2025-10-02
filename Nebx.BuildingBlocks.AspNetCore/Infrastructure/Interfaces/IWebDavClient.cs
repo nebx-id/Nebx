@@ -5,7 +5,7 @@ namespace Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces;
 /// <summary>
 /// Defines operations for interacting with a WebDAV server, such as creating, retrieving, and deleting files.
 /// </summary>
-public interface IWebDav
+public interface IWebDavClient
 {
     /// <summary>
     /// Uploads a file to the WebDAV server at the specified path.

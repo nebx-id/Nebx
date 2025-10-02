@@ -1,4 +1,6 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Models.Responses;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Nebx.BuildingBlocks.AspNetCore.Models;
 
 public record ErrorResponse
 {
@@ -11,17 +13,16 @@ public record ErrorResponse
     {
     }
 
-    public static ErrorResponse Create(string message, int statusCode, string? errorCode = null)
+    public static ErrorResponse Create(string message, int statusCode)
     {
         return new ErrorResponse()
         {
             StatusCode = statusCode,
             Message = message,
-            ErrorCode = errorCode
         };
     }
 
     public void AddErrorCode(string code) => ErrorCode = code;
-
     public void AddErrors(IReadOnlyDictionary<string, string>? errors) => Errors = errors;
+    public IResult ToMinimalApiResult() => Results.Json(this, statusCode: StatusCode);
 }

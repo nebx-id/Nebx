@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Nebx.BuildingBlocks.AspNetCore.Models.Responses;
+using Nebx.BuildingBlocks.AspNetCore.Models;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Exceptions;
 

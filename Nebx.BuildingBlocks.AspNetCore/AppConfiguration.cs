@@ -11,7 +11,7 @@ using Nebx.BuildingBlocks.AspNetCore.Data.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Exceptions;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Implementations;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces;
-using Nebx.BuildingBlocks.AspNetCore.Models.Responses;
+using Nebx.BuildingBlocks.AspNetCore.Models;
 using Nebx.BuildingBlocks.AspNetCore.Services;
 using Quartz;
 using MvcJsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
@@ -20,7 +20,16 @@ namespace Nebx.BuildingBlocks.AspNetCore;
 
 public static class AppConfiguration
 {
-    public static IHostBuilder AddHostConfiguration(this IHostBuilder host)
+    public static WebApplicationBuilder AddConfiguration(this WebApplicationBuilder builder)
+    {
+        builder.Host.AddHostConfiguration();
+        builder.WebHost.AddIWebHostConfiguration();
+        builder.Services.AddServicesConfiguration();
+        
+        return builder;
+    }
+
+    private static IHostBuilder AddHostConfiguration(this IHostBuilder host)
     {
         host.UseDefaultServiceProvider((_, options) =>
         {
@@ -31,19 +40,18 @@ public static class AppConfiguration
         return host;
     }
 
-    public static void AddIWebHostConfiguration(this IWebHostBuilder webHost)
+    private static void AddIWebHostConfiguration(this IWebHostBuilder webHost)
     {
         webHost.ConfigureKestrel(kestrel => { kestrel.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(30); });
     }
 
-    public static IServiceCollection AddServicesConfiguration(this IServiceCollection services)
+    private static IServiceCollection AddServicesConfiguration(this IServiceCollection services)
     {
-        // endpoints
-        services.AddEndpointsApiExplorer();
-        services.AddOpenApi();
-
         services.AddHttpContextAccessor();
         services.AddAntiforgery();
+
+        services.AddEndpointsApiExplorer();
+        services.AddOpenApi();
 
         services.AddRateLimiter(options =>
         {
@@ -62,7 +70,7 @@ public static class AppConfiguration
             };
         });
 
-        // json formater
+        // Minimal API json formatter
         services.Configure<JsonOptions>(options =>
         {
             options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -71,6 +79,7 @@ public static class AppConfiguration
             options.SerializerOptions.WriteIndented = true;
         });
 
+        // MVC / Swagger json formatter
         services.Configure<MvcJsonOptions>(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());

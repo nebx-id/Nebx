@@ -1,14 +1,14 @@
-﻿using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces;
-using WebDav;
+﻿using WebDav;
+using IWebDavClient = Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces.IWebDavClient;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infrastructure.Implementations;
 
-public class Nextcloud : IWebDav
+public class NextcloudClient : IWebDavClient
 {
     private readonly WebDavClient _client;
     private readonly string _basePath;
 
-    public Nextcloud(HttpClient httpClient, string username)
+    public NextcloudClient(HttpClient httpClient, string username)
     {
         _client = new WebDavClient(httpClient);
         _basePath = $"remote.php/dav/files/{username}/";
