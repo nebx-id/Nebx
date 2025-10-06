@@ -12,12 +12,15 @@ public class MediatorImpl : IMediator
         _mediator = mediator;
     }
 
+    /// <inheritdoc />
     public async Task<TResult> Send<TResult>(IQuery<TResult> query, CancellationToken cancellationToken = default)
         => await _mediator.Send(query, cancellationToken);
 
+    /// <inheritdoc />
     public async Task Send(ICommand command, CancellationToken cancellationToken = default)
         => await _mediator.Send(command, cancellationToken);
 
+    /// <inheritdoc />
     public async Task Publish<TEvent>(TEvent notification, CancellationToken cancellationToken = default)
         where TEvent : IDomainEvent
         => await _mediator.Publish(notification, cancellationToken);

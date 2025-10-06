@@ -11,13 +11,16 @@ public class UnitOfWork<TDbContext> : IUnitOfWork<TDbContext> where TDbContext :
         Context = dbContext;
     }
 
+    /// <inheritdoc />
     public TDbContext Context { get; }
 
+    /// <inheritdoc />
     public async Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
     {
         return await Context.Database.BeginTransactionAsync(cancellationToken);
     }
 
+    /// <inheritdoc />
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         await Context.SaveChangesAsync(cancellationToken);
