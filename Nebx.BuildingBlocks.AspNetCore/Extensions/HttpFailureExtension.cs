@@ -35,7 +35,7 @@ public static class HttpFailureExtension
     /// Additionally, if the failure is a <see cref="BadRequest"/> that contains 
     /// validation errors, those will be included in the <see cref="ErrorResponse"/>.
     /// </remarks>
-    private static ErrorResponse ToErrorResponse(this HttpFailure failure)
+    private static ErrorResponse ToErrorResponse(this Failure failure)
     {
         var errorResponse = failure switch
         {
@@ -47,7 +47,7 @@ public static class HttpFailureExtension
             UnprocessableEntity f => ErrorResponse.Create(f.Message, f.StatusCode),
             InternalServerError f => ErrorResponse.Create(f.Message, f.StatusCode),
             _ => throw new NotSupportedException(
-                $"Failure type '{failure.GetType().Name}' is not mapped to an {nameof(IResult)}."),
+                $"Failure type '{failure.GetType().Name}' is not mapped to an {nameof(HttpFailure)} type."),
         };
 
         if (failure is BadRequest badRequest)

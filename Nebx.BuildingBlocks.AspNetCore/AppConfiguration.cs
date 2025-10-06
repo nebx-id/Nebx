@@ -9,12 +9,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nebx.BuildingBlocks.AspNetCore.Data.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Exceptions;
-using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Configurations;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Implementations;
 using Nebx.BuildingBlocks.AspNetCore.Infrastructure.Interfaces;
 using Nebx.BuildingBlocks.AspNetCore.Models;
 using Nebx.BuildingBlocks.AspNetCore.Services;
-using Quartz;
 using MvcJsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
 
 namespace Nebx.BuildingBlocks.AspNetCore;
@@ -89,10 +87,6 @@ public static class AppConfiguration
             options.JsonSerializerOptions.WriteIndented = true;
         });
 
-        // Background Jobs
-        services.AddQuartz();
-        services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
-
         services.AddSingleton<IClock, Clock>();
         services.AddScoped<IMediator, MediatorImpl>();
 
@@ -108,6 +102,11 @@ public static class AppConfiguration
     {
         app.UseExceptionHandler(_ => { });
         app.UseAntiforgery();
+
+        if (!app.Environment.IsProduction())
+        {
+            app.MapOpenApi();
+        }
 
         return app;
     }
