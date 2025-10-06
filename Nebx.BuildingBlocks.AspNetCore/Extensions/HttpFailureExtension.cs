@@ -66,5 +66,8 @@ public static class HttpFailureExtension
     /// representing the error as a properly formatted response.
     /// </returns>
     public static IResult ToMinimalApiResult(this HttpFailure failure)
-        => failure.ToErrorResponse().ToMinimalApiResult();
+    {
+        var error = failure.ToErrorResponse();
+        return Results.Json(error, statusCode: error.StatusCode);
+    }
 }
