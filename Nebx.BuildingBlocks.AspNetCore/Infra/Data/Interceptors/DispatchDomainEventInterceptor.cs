@@ -8,10 +8,17 @@ namespace Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 /// <summary>
 /// Intercepts EF Core's save changes operations to dispatch domain events after an aggregate root is modified.
 /// </summary>
-internal sealed class DispatchDomainEventInterceptor : SaveChangesInterceptor
+public sealed class DispatchDomainEventInterceptor : SaveChangesInterceptor
 {
     private readonly IMediator _mediator;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DispatchDomainEventInterceptor"/> class.
+    /// </summary>
+    /// <param name="mediator">
+    /// The <see cref="IMediator"/> instance used to publish domain events after entities
+    /// are persisted to the database.
+    /// </param>
     public DispatchDomainEventInterceptor(IMediator mediator)
     {
         _mediator = mediator;

@@ -11,7 +11,7 @@ namespace Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 /// Intercepts SaveChanges operations to automatically update time audit fields
 /// (CreatedOn and ModifiedOn) for entities implementing <see cref="ITimeAuditable" />.
 /// </summary>
-internal sealed class TimeAuditInterceptor : SaveChangesInterceptor
+public sealed class TimeAuditInterceptor : SaveChangesInterceptor
 {
     private readonly IClock _clock;
 

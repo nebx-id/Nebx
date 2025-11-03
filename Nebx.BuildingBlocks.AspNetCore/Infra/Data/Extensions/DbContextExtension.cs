@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interfaces;
 
@@ -38,7 +36,6 @@ public static class DbContextExtension
     /// <item><description>Registers all <see cref="ISaveChangesInterceptor"/> implementations found in DI.</description></item>
     /// <item><description>Logs EF Core debug-level messages to the console.</description></item>
     /// <item><description>Enables detailed errors for better debugging.</description></item>
-    /// <item><description>Enables sensitive data logging when not in production (useful for development and testing).</description></item>
     /// </list>
     /// <para>
     /// Also registers a scoped <see cref="IUnitOfWork{TDbContext}"/> implementation, 
@@ -63,21 +60,12 @@ public static class DbContextExtension
         {
             optionBuilder.Invoke(sp, options);
 
-            var environment = sp.GetRequiredService<IWebHostEnvironment>();
-            var interceptor = sp.GetServices<ISaveChangesInterceptor>();
-
-            options.AddInterceptors(interceptor);
-            options.LogTo(Console.WriteLine, (_, level) => level == LogLevel.Debug);
+            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+            options.UseLoggerFactory(sp.GetRequiredService<ILoggerFactory>());
             options.EnableDetailedErrors();
-
-            if (!environment.IsProduction())
-            {
-                options.EnableSensitiveDataLogging();
-            }
         });
 
         services.AddScoped<IUnitOfWork<TDbContext>, UnitOfWork<TDbContext>>();
         return services;
     }
 }
-
