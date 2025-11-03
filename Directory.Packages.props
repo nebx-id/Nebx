@@ -10,7 +10,6 @@
     <PackageVersion Include="Funcky" Version="3.5.1" />
     <PackageVersion Include="LiteBus.Extensions.MicrosoftDependencyInjection" Version="3.1.0" />
     <PackageVersion Include="MailKit" Version="4.14.1" />
-    <PackageVersion Include="MediatR.Contracts" Version="2.0.1" />
     <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.2" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
