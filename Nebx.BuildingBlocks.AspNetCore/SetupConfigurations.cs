@@ -40,7 +40,7 @@ public static class SetupConfigurations
     /// <item><description>System abstractions such as <see cref="IClock"/> for testable time management.</description></item>
     /// </list>
     /// </remarks>
-    public static IServiceCollection AddBuildingBlocks(this IServiceCollection services)
+    public static IServiceCollection RegisterBuildingBlocks(this IServiceCollection services)
     {
         services.AddJsonConfiguration();
         services.SetRateLimiterResponse();
@@ -63,9 +63,9 @@ public static class SetupConfigurations
     /// This method should be invoked only once during application startup to initialize
     /// the application's mediator pipeline and enable domain event dispatching.
     /// </remarks>
-    public static IServiceCollection AddMediator(this IServiceCollection services, Assembly assembly)
+    public static IServiceCollection RegisterMediator(this IServiceCollection services, Assembly assembly)
     {
-        services.EnableMediator(assembly);
+        services.AddMediatorFromAssembly(assembly);
         services.AddScoped<IMediator, MediatorImplementation>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
 
@@ -90,7 +90,7 @@ public static class SetupConfigurations
     /// </remarks>
     public static IServiceCollection AddModuleDependencies(this IServiceCollection services, Assembly assembly)
     {
-        services.EnableMediator(assembly);
+        services.AddMediatorFromAssembly(assembly);
         services.AddValidatorsFromAssembly(assembly);
 
         return services;
@@ -104,7 +104,7 @@ public static class SetupConfigurations
     /// <returns>
     /// The same <see cref="IServiceCollection"/> instance for fluent chaining.
     /// </returns>
-    private static IServiceCollection EnableMediator(this IServiceCollection services, Assembly assembly)
+    private static IServiceCollection AddMediatorFromAssembly(this IServiceCollection services, Assembly assembly)
     {
         services.AddLiteBus(liteBus =>
         {
