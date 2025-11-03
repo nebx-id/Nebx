@@ -15,7 +15,7 @@
 public abstract record DomainEvent : IDomainEvent
 {
     /// <inheritdoc />
-    public Guid EventId { get; } = Guid.CreateVersion7();
+    public Guid EventId { get; } = Guid.NewGuid();
 
     /// <inheritdoc />
     public DateTime OccurredOn { get; } = DateTime.UtcNow;

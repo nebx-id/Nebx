@@ -84,7 +84,7 @@ public static class SetupConfigurations
     /// </para>
     /// <list type="bullet">
     /// <item><description>Register all <see cref="FluentValidation.IValidator{T}"/> implementations for dependency injection.</description></item>
-    /// <item><description>Register all MediatR request handlers, notification handlers, and pipeline behaviors found in the assembly.</description></item>
+    /// <item><description>Register all mediator request handlers, notification handlers, and pipeline behaviors found in the assembly.</description></item>
     /// </list>
     /// <para>
     /// Typically, this method should be called once per application module — usually during startup
