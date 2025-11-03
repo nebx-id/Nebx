@@ -1,3 +1,5 @@
+using LiteBus.Events.Abstractions;
+
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator;
 
 /// <summary>
@@ -5,4 +7,4 @@ namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator;
 /// </summary>
 /// <typeparam name="TNotification">The notification type.</typeparam>
 public interface INotificationHandler<in TNotification>
-    : MediatR.INotificationHandler<TNotification> where TNotification : INotification;
+    : IEventHandler<TNotification> where TNotification : INotification;

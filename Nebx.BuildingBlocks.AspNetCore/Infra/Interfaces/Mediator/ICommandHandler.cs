@@ -1,5 +1,3 @@
-using MediatR;
-
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator;
 
 /// <summary>
@@ -7,4 +5,4 @@ namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator;
 /// </summary>
 /// <typeparam name="TCommand">The command type.</typeparam>
 public interface ICommandHandler<in TCommand>
-    : IRequestHandler<TCommand> where TCommand : ICommand;
+    : LiteBus.Commands.Abstractions.ICommandHandler<TCommand> where TCommand : ICommand;
