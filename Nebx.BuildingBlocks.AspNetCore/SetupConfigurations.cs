@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using System.Reflection;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces.Services;
@@ -59,6 +61,46 @@ public static class SetupConfigurations
 
         services.AddScoped<IMediator, MediatorImplementation>();
         services.AddMediatR(_ => { });
+
+        return services;
+    }
+
+    /// <summary>
+    /// Registers module-level dependencies such as FluentValidation validators and MediatR handlers
+    /// from the specified assembly.
+    /// </summary>
+    /// <param name="services">
+    /// The <see cref="IServiceCollection"/> used to register dependencies.
+    /// </param>
+    /// <param name="assembly">
+    /// The assembly containing validators, MediatR handlers, and other module-related components.
+    /// </param>
+    /// <returns>
+    /// The same <see cref="IServiceCollection"/> instance, allowing fluent chaining of registrations.
+    /// </returns>
+    /// <remarks>
+    /// <para>
+    /// This method automatically scans the provided <paramref name="assembly"/> to:
+    /// </para>
+    /// <list type="bullet">
+    /// <item><description>Register all <see cref="FluentValidation.IValidator{T}"/> implementations for dependency injection.</description></item>
+    /// <item><description>Register all MediatR request handlers, notification handlers, and pipeline behaviors found in the assembly.</description></item>
+    /// </list>
+    /// <para>
+    /// Typically, this method should be called once per application module — usually during startup
+    /// (e.g., in <c>Program.cs</c> or within a module registration method).
+    /// </para>
+    /// </remarks>
+    /// <example>
+    /// The following example demonstrates how to register validators and handlers from a module:
+    /// <code>
+    /// builder.Services.AddModuleDependencies(typeof(MyModule).Assembly);
+    /// </code>
+    /// </example>
+    public static IServiceCollection AddModuleDependencies(this IServiceCollection services, Assembly assembly)
+    {
+        services.AddValidatorsFromAssembly(assembly);
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
 
         return services;
     }
