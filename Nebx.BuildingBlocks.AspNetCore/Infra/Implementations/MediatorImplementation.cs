@@ -40,6 +40,11 @@ public class MediatorImplementation : IMediator
         => await _commandMediator.SendAsync(command, cancellationToken);
 
     /// <inheritdoc />
+    public async Task<TResult> Send<TResult>(Interfaces.Mediator.ICommand<TResult> command,
+        CancellationToken cancellationToken = default)
+        => await _commandMediator.SendAsync(command, cancellationToken);
+
+    /// <inheritdoc />
     public async Task Publish<TEvent>(TEvent notification, CancellationToken cancellationToken = default)
         where TEvent : IDomainEvent
         => await _eventMediator.PublishAsync(notification, cancellationToken);
