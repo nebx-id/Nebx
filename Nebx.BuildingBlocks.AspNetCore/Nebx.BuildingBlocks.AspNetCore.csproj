@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
@@ -18,40 +18,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="lib\$(TargetFramework)"/>
-        <None Remove="Configurations\**" />
+        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="lib\$(TargetFramework)" />
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" Version="2.1.66"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0"/>
-        <PackageReference Include="Funcky" Version="3.5.1" />
-        <PackageReference Include="MailKit" Version="4.14.1" />
-        <PackageReference Include="MediatR" Version="12.5.0"/>
-        <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
-        <PackageReference Include="Scrutor" Version="6.1.0" />
-        <PackageReference Include="System.Text.Encodings.Web" Version="9.0.10" />
-        <PackageReference Include="WebDav.Client" Version="2.9.0" />
+        <PackageReference Include="Dapper" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+        <PackageReference Include="Funcky" />
+        <PackageReference Include="MailKit" />
+        <PackageReference Include="MediatR" />
+        <PackageReference Include="MediatR.Contracts" />
+        <PackageReference Include="Microsoft.Data.SqlClient" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+        <PackageReference Include="Scrutor" />
+        <PackageReference Include="System.Text.Encodings.Web" />
+        <PackageReference Include="WebDav.Client" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Configurations\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Configurations\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="bin\" />
-      <Folder Include="Core\Contracts\" />
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+        </AssemblyAttribute>
     </ItemGroup>
 
 </Project>
