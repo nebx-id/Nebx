@@ -59,8 +59,9 @@ public static class SetupConfigurations
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
         services.AddSingleton<IClock, Clock>();
 
-        services.AddScoped<IMediator, MediatorImplementation>();
+        // need assembly to be supplied, or else it'll throw exception
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SetupConfigurations).Assembly));
+        services.AddScoped<IMediator, MediatorImplementation>();
 
         return services;
     }

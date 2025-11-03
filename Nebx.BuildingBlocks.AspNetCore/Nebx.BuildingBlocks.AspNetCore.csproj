@@ -14,7 +14,7 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.2.3</Version>
+        <Version>0.2.4</Version>
     </PropertyGroup>
 
     <PropertyGroup>
