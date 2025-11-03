@@ -14,30 +14,34 @@
         <RepositoryUrl>https://github.com/nebx-id/Nebx</RepositoryUrl>
         <License>https://raw.githubusercontent.com/nebx-id/Nebx/refs/heads/main/LICENSE</License>
         <RepositoryType>git</RepositoryType>
-        <Version>0.1.12</Version>
+        <Version>0.2.0</Version>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="$(OutputPath)\$(AssemblyName).xml" Pack="true" PackagePath="lib\$(TargetFramework)" />
+        <None Include="README.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Dapper" />
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
-        <PackageReference Include="Funcky" />
-        <PackageReference Include="MailKit" />
-        <PackageReference Include="MediatR" />
-        <PackageReference Include="MediatR.Contracts" />
-        <PackageReference Include="Microsoft.Data.SqlClient" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-        <PackageReference Include="Scrutor" />
-        <PackageReference Include="System.Text.Encodings.Web" />
-        <PackageReference Include="WebDav.Client" />
+        <PackageReference Include="Dapper"/>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions"/>
+        <PackageReference Include="Funcky"/>
+        <PackageReference Include="MailKit"/>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="MediatR.Contracts"/>
+        <PackageReference Include="Microsoft.Data.SqlClient"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational"/>
+        <PackageReference Include="Scrutor"/>
+        <PackageReference Include="System.Text.Encodings.Web"/>
+        <PackageReference Include="WebDav.Client"/>
     </ItemGroup>
 
     <ItemGroup>

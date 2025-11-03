@@ -14,6 +14,13 @@ public class GlobalExceptionHandler : IExceptionHandler
 {
     private readonly ILogger<GlobalExceptionHandler> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GlobalExceptionHandler"/> class.
+    /// </summary>
+    /// <param name="logger">
+    /// The <see cref="ILogger{TCategoryName}"/> instance used to log unhandled exceptions
+    /// and diagnostic information during request processing.
+    /// </param>
     public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     {
         _logger = logger;

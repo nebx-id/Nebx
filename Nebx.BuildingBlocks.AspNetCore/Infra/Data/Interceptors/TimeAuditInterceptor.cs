@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces;
 using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces.Services;
 using Nebx.BuildingBlocks.AspNetCore.Core.Models.DDD;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Data.Extensions;
-using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Services;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 
@@ -27,7 +25,7 @@ internal sealed class TimeAuditInterceptor : SaveChangesInterceptor
     }
 
     /// <summary>
-    /// Called at the start of <see cref="DbContext.SaveChanges" /> to update audit timestamps.
+    /// Called automatically during <see cref="DbContext.SaveChanges()"/> to update audit fields.
     /// </summary>
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
@@ -40,7 +38,7 @@ internal sealed class TimeAuditInterceptor : SaveChangesInterceptor
     }
 
     /// <summary>
-    /// Called at the start of <see cref="DbContext.SaveChangesAsync" /> to update audit timestamps asynchronously.
+    /// Called automatically during <see cref="DbContext.SaveChangesAsync(CancellationToken)"/> to update audit fields.
     /// </summary>
     public override ValueTask<InterceptionResult<int>> SavingChangesAsync(
         DbContextEventData eventData,
