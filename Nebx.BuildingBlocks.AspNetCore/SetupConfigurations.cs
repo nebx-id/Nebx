@@ -60,7 +60,7 @@ public static class SetupConfigurations
         services.AddSingleton<IClock, Clock>();
 
         services.AddScoped<IMediator, MediatorImplementation>();
-        services.AddMediatR(_ => { });
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SetupConfigurations).Assembly));
 
         return services;
     }
