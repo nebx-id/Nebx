@@ -40,7 +40,7 @@ public static class SetupConfigurations
     /// <item><description>System abstractions such as <see cref="IClock"/> for testable time management.</description></item>
     /// </list>
     /// </remarks>
-    public static IServiceCollection RegisterBuildingBlocks(this IServiceCollection services)
+    public static IServiceCollection AddBuildingBlocks(this IServiceCollection services)
     {
         services.AddJsonConfiguration();
         services.SetRateLimiterResponse();
@@ -50,28 +50,6 @@ public static class SetupConfigurations
 
         return services;
     }
-
-    /// <summary>
-    /// Configures the application's mediator infrastructure and domain event dispatching.
-    /// </summary>
-    /// <param name="services">The service collection to configure.</param>
-    /// <param name="assembly">The assembly containing command, query, and event handlers.</param>
-    /// <returns>
-    /// The same <see cref="IServiceCollection"/> instance for fluent chaining.
-    /// </returns>
-    /// <remarks>
-    /// This method should be invoked only once during application startup to initialize
-    /// the application's mediator pipeline and enable domain event dispatching.
-    /// </remarks>
-    public static IServiceCollection RegisterMediator(this IServiceCollection services, Assembly assembly)
-    {
-        services.AddMediatorFromAssembly(assembly);
-        services.AddScoped<IMediator, MediatorImplementation>();
-        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
-
-        return services;
-    }
-
 
     /// <summary>
     /// Registers validators and LiteBus handlers from the specified assembly.
@@ -85,26 +63,10 @@ public static class SetupConfigurations
     /// Scans the given assembly and automatically registers:
     /// <list type="bullet">
     /// <item><description>All <see cref="IValidator{T}"/> implementations.</description></item>
-    /// <item><description>All LiteBus command, query, and event handlers.</description></item>
+    /// <item><description>All mediator command, query, and event handlers.</description></item>
     /// </list>
     /// </remarks>
     public static IServiceCollection AddModuleDependencies(this IServiceCollection services, Assembly assembly)
-    {
-        services.AddMediatorFromAssembly(assembly);
-        services.AddValidatorsFromAssembly(assembly);
-
-        return services;
-    }
-
-    /// <summary>
-    /// Registers LiteBus mediator modules (commands, queries, events) from the specified assembly.
-    /// </summary>
-    /// <param name="services">The service collection to configure.</param>
-    /// <param name="assembly">The assembly containing LiteBus handler implementations.</param>
-    /// <returns>
-    /// The same <see cref="IServiceCollection"/> instance for fluent chaining.
-    /// </returns>
-    private static IServiceCollection AddMediatorFromAssembly(this IServiceCollection services, Assembly assembly)
     {
         services.AddLiteBus(liteBus =>
         {
@@ -112,6 +74,11 @@ public static class SetupConfigurations
             liteBus.AddQueryModule(m => m.RegisterFromAssembly(assembly));
             liteBus.AddEventModule(m => m.RegisterFromAssembly(assembly));
         });
+
+        services.AddScoped<IMediator, MediatorImplementation>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
+
+        services.AddValidatorsFromAssembly(assembly);
 
         return services;
     }
