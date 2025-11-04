@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Failures;
+namespace Nebx.BuildingBlocks.AspNetCore.Core.Failures;
 
 /// <summary>
 /// Represents a standardized HTTP failure with a specific status code and message.

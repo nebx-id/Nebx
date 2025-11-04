@@ -1,4 +1,4 @@
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Interfaces.Services;
+namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Services;
 
 /// <summary>
 /// Provides the current system time, abstracted for testability.

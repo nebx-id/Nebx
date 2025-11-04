@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
-using Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Emails;
+using Nebx.BuildingBlocks.AspNetCore.Core.Models.Emails;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Tests.Core.Contracts.Emails;
+namespace Nebx.BuildingBlocks.AspNetCore.Tests.Core.Models.Emails;
 
 public class EmailMessageTests
 {

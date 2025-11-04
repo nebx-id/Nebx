@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>0.2.8</Version>
+        <Version>0.2.9</Version>
         <PackageId>Nebx.BuildingBlocks.AspNetCore</PackageId>
         <Title>Nebx.BuildingBlocks.AspNetCore</Title>
         <Authors>Enrico Roselino</Authors>

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Configurations;

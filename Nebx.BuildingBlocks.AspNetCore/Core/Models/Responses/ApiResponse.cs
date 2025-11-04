@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
+namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 /// <summary>
 /// Represents a standardized API response wrapper containing data, metadata, and strongly typed error information.

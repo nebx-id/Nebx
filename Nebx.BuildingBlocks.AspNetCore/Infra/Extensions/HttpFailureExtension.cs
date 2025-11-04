@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
-using Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Failures;
+using Nebx.BuildingBlocks.AspNetCore.Core.Failures;
+using Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Extensions;
 

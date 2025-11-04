@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces.Services;
 using Nebx.BuildingBlocks.AspNetCore.Core.Models.DDD;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Data.Extensions;
+using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Services;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 

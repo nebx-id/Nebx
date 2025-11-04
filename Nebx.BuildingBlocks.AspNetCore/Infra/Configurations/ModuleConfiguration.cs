@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Configurations;

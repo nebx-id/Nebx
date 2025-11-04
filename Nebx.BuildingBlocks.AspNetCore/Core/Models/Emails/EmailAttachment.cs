@@ -1,4 +1,4 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Emails;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Emails;
 
 /// <summary>
 /// Represents an email attachment with metadata and content.

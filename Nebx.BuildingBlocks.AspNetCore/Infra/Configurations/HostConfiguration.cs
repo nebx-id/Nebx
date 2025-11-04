@@ -12,7 +12,7 @@ public static class HostConfiguration
     /// </summary>
     /// <param name="host">The <see cref="IHostBuilder"/> to configure.</param>
     /// <returns>The configured <see cref="IHostBuilder"/> instance.</returns>
-    public static IHostBuilder ValidateProvider(this IHostBuilder host)
+    public static IHostBuilder UseValidateServiceProvider(this IHostBuilder host)
     {
         host.UseDefaultServiceProvider((_, options) =>
         {

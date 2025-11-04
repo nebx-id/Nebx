@@ -6,11 +6,11 @@ using LiteBus.Messaging.Extensions.MicrosoftDependencyInjection;
 using LiteBus.Queries.Extensions.MicrosoftDependencyInjection;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
-using Nebx.BuildingBlocks.AspNetCore.Core.Interfaces.Services;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Configurations;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Implementations;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator;
+using Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Services;
 
 namespace Nebx.BuildingBlocks.AspNetCore;
 

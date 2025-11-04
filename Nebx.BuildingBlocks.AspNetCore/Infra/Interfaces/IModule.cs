@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Interfaces;
+namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces;
 
 /// <summary>
 /// Defines a contract for modular components that can register services

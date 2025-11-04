@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Emails;
+using Nebx.BuildingBlocks.AspNetCore.Core.Models.Emails;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Implementations;
 

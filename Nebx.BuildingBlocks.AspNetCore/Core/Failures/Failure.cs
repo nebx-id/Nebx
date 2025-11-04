@@ -1,4 +1,4 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Failures;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Failures;
 
 /// <summary>
 /// Represents a generic failure result containing an error message.

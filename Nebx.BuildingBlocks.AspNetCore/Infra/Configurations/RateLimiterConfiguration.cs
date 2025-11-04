@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
+using Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Configurations;
 

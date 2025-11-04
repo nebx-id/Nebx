@@ -1,6 +1,4 @@
-﻿using Nebx.BuildingBlocks.AspNetCore.Contracts.Models;
-
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Models;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Models;
 
 /// <summary>
 /// Represents a paginated result set containing a collection of items and the total count.

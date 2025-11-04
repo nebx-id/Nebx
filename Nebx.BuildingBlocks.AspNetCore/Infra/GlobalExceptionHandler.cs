@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
 using Nebx.BuildingBlocks.AspNetCore.Core.Exceptions;
+using Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Infra;
 

@@ -1,4 +1,4 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 /// <summary>
 /// Represents detailed information about an error that occurred during an API request.

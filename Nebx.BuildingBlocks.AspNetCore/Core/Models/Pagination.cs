@@ -1,4 +1,4 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Models;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Models;
 
 /// <summary>
 /// Represents pagination parameters for paged data retrieval.

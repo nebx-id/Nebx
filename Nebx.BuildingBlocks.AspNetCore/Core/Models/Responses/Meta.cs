@@ -1,4 +1,4 @@
-﻿namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Models.Responses;
+﻿namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Responses;
 
 /// <summary>
 /// Represents metadata associated with paginated API responses.

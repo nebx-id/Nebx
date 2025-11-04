@@ -1,4 +1,4 @@
-﻿using Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Emails;
+﻿using Nebx.BuildingBlocks.AspNetCore.Core.Models.Emails;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Implementations;
 
 namespace Nebx.BuildingBlocks.AspNetCore.Tests.Infra.Implementations;

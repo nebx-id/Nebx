@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Options;
+namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Options;
 
 /// <summary>
 /// Represents configuration options for connecting to a Nextcloud instance.

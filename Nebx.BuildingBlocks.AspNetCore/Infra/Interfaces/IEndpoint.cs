@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Routing;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Interfaces;
+namespace Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces;
 
 /// <summary>
 /// Defines a contract for automatically registering HTTP endpoints.

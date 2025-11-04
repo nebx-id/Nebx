@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Contracts.Options;
+namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Options;
 
 /// <summary>
 /// Represents configuration options for an email sender,

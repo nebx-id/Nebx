@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Emails;
+namespace Nebx.BuildingBlocks.AspNetCore.Core.Models.Emails;
 
 /// <summary>
 /// Represents an email message with sender, recipients, content, and attachments.

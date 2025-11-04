@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Nebx.BuildingBlocks.AspNetCore.Core.Contracts.Failures;
+using Nebx.BuildingBlocks.AspNetCore.Core.Failures;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Tests.Core.Contracts.Failures;
+namespace Nebx.BuildingBlocks.AspNetCore.Tests.Core.Failures;
 
 public class HttpFailureTests
 {

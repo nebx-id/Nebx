@@ -1,6 +1,6 @@
-﻿using Nebx.BuildingBlocks.AspNetCore.Contracts.Models;
+﻿using Nebx.BuildingBlocks.AspNetCore.Core.Models;
 
-namespace Nebx.BuildingBlocks.AspNetCore.Tests.Contracts.Models;
+namespace Nebx.BuildingBlocks.AspNetCore.Tests.Core.Models;
 
 public class PaginationTests
 {
