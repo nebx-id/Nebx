@@ -6,6 +6,7 @@ using LiteBus.Messaging.Extensions.MicrosoftDependencyInjection;
 using LiteBus.Queries.Extensions.MicrosoftDependencyInjection;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Configurations;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Data.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Implementations;
@@ -75,8 +76,8 @@ public static class SetupConfigurations
             liteBus.AddEventModule(m => m.RegisterFromAssembly(assembly));
         });
 
-        services.AddScoped<IMediator, MediatorImplementation>();
-        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
+        services.TryAddScoped<IMediator, LiteBusMediator>();
+        services.TryAddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
 
         services.AddValidatorsFromAssembly(assembly);
 

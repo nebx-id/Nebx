@@ -8,19 +8,19 @@ using ICommand = Nebx.BuildingBlocks.AspNetCore.Infra.Interfaces.Mediator.IComma
 namespace Nebx.BuildingBlocks.AspNetCore.Infra.Implementations;
 
 /// <inheritdoc />
-public class MediatorImplementation : IMediator
+public class LiteBusMediator : IMediator
 {
     private readonly ICommandMediator _commandMediator;
     private readonly IQueryMediator _queryMediator;
     private readonly IEventMediator _eventMediator;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="MediatorImplementation"/> class.
+    /// Initializes a new instance of the <see cref="LiteBusMediator"/> class.
     /// </summary>
     /// <param name="commandMediator">The LiteBus mediator responsible for handling commands.</param>
     /// <param name="queryMediator">The LiteBus mediator responsible for handling queries.</param>
     /// <param name="eventMediator">The LiteBus mediator responsible for publishing domain events.</param>
-    public MediatorImplementation(
+    public LiteBusMediator(
         ICommandMediator commandMediator,
         IQueryMediator queryMediator,
         IEventMediator eventMediator)
