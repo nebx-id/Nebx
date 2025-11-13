@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>8.0.0</Version>
+        <PackageId>Nebx.Labs.Integrations.Storage</PackageId>
+        <Title>
+            Unified interfaces and helpers for file and blob storage providers.
+        </Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="WebDav.Client" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Providers\" />
+    </ItemGroup>
+
+</Project>

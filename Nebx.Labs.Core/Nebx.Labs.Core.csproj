@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>1.0.0</Version>
+        <PackageId>Nebx.Labs.Core</PackageId>
+        <Title>
+            Essential utilities and abstractions for building modular .NET applications.
+        </Title>
+    </PropertyGroup>
+
+</Project>

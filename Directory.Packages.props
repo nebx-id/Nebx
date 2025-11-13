@@ -5,14 +5,22 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
-    <PackageVersion Include="LiteBus.Extensions.MicrosoftDependencyInjection" Version="3.1.0" />
+    <PackageVersion Include="FluentValidation" Version="12.1.0" />
+    <PackageVersion Include="LiteBus.Commands.Extensions.Microsoft.DependencyInjection" Version="4.2.0" />
+    <PackageVersion Include="LiteBus.Events.Extensions.Microsoft.DependencyInjection" Version="4.2.0" />
+    <PackageVersion Include="LiteBus.Queries.Extensions.Microsoft.DependencyInjection" Version="4.2.0" />
     <PackageVersion Include="MailKit" Version="4.14.1" />
-    <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.2" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+    <PackageVersion Include="Microsoft.Data.SqlClient" Version="6.1.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.11" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.0" />
+    <PackageVersion Include="MinVer" Version="6.0.0" />
+    <PackageVersion Include="MimeKit" Version="4.14.0" />
+    <PackageVersion Include="Npgsql" Version="9.0.4" />
     <PackageVersion Include="Scrutor" Version="6.1.0" />
+    <PackageVersion Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Settings.Configuration" Version="9.0.0" />
+    <PackageVersion Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageVersion Include="System.Text.Encodings.Web" Version="9.0.10" />
     <PackageVersion Include="WebDav.Client" Version="2.9.0" />
     <PackageVersion Include="xunit" Version="2.9.3" />

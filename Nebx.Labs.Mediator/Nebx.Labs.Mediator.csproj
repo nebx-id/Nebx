@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>8.0.0</Version>
+        <PackageId>Nebx.Labs.Mediator</PackageId>
+        <Title>
+            Lightweight mediator abstractions and patterns for decoupled application architecture.
+        </Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Nebx.Labs.Core\Nebx.Labs.Core.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LiteBus.Commands.Extensions.Microsoft.DependencyInjection"/>
+        <PackageReference Include="LiteBus.Events.Extensions.Microsoft.DependencyInjection"/>
+        <PackageReference Include="LiteBus.Queries.Extensions.Microsoft.DependencyInjection"/>
+    </ItemGroup>
+
+</Project>

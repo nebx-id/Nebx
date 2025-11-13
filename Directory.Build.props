@@ -1,0 +1,39 @@
+<Project>
+
+    <!-- Build settings -->
+    <PropertyGroup>
+        <!-- Treat all warnings as errors -->
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+        <!-- NuGet metadata -->
+        <Authors>Enrico Fathahillah Roselino</Authors>
+        <Company>Nebx</Company>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <Description>Reusable components that simplify and accelerate application development.</Description>
+
+        <!-- XML documentation -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- Symbols & packability -->
+        <IncludeSymbols>true</IncludeSymbols>
+        <IsPackable>true</IsPackable>
+
+        <!-- Repo metadata -->
+        <RepositoryUrl>https://github.com/your-org/your-repo</RepositoryUrl>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    </PropertyGroup>
+
+    <!-- MinVer versioning settings -->
+    <PropertyGroup>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerAutoIncrement>patch</MinVerAutoIncrement>
+    </PropertyGroup>
+
+    <!-- Package references -->
+    <ItemGroup>
+        <PackageReference Include="MinVer" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>

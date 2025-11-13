@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.Core", "Nebx.Labs.Core\Nebx.Labs.Core.csproj", "{827F1B25-31C7-4884-9985-CA6499357690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.AspNetCore", "Nebx.Labs.AspNetCore\Nebx.Labs.AspNetCore.csproj", "{D769F4C1-0294-43ED-92C6-74762786874A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.EntityFrameworkCore", "Nebx.Labs.EntityFrameworkCore\Nebx.Labs.EntityFrameworkCore.csproj", "{A0A864B3-5DAD-4E77-A7E8-6545118E3558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.Integrations.Storage", "Nebx.Labs.Integrations.Storage\Nebx.Labs.Integrations.Storage.csproj", "{081D7D3E-9837-4A55-B0A6-FC344A3B3531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.Integrations.Email", "Nebx.Labs.Integrations.Email\Nebx.Labs.Integrations.Email.csproj", "{1EA8F31D-5C2C-4221-BBC1-D477F77F69A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.Integrations.Database", "Nebx.Labs.Integrations.Database\Nebx.Labs.Integrations.Database.csproj", "{55DDCE83-1287-4C4A-91E5-DE97DBCBA71A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebx.Labs.Mediator", "Nebx.Labs.Mediator\Nebx.Labs.Mediator.csproj", "{D031DCD6-AC62-4961-B520-B0AB3021254F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builds", "Builds", "{CBF0C59D-68F8-45D8-95A1-CDB527C6212D}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{02143874-2FC7-49E4-972C-6C7A2370ADE4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{827F1B25-31C7-4884-9985-CA6499357690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827F1B25-31C7-4884-9985-CA6499357690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827F1B25-31C7-4884-9985-CA6499357690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827F1B25-31C7-4884-9985-CA6499357690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D769F4C1-0294-43ED-92C6-74762786874A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D769F4C1-0294-43ED-92C6-74762786874A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D769F4C1-0294-43ED-92C6-74762786874A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D769F4C1-0294-43ED-92C6-74762786874A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A864B3-5DAD-4E77-A7E8-6545118E3558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A864B3-5DAD-4E77-A7E8-6545118E3558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A864B3-5DAD-4E77-A7E8-6545118E3558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A864B3-5DAD-4E77-A7E8-6545118E3558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{081D7D3E-9837-4A55-B0A6-FC344A3B3531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{081D7D3E-9837-4A55-B0A6-FC344A3B3531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{081D7D3E-9837-4A55-B0A6-FC344A3B3531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{081D7D3E-9837-4A55-B0A6-FC344A3B3531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA8F31D-5C2C-4221-BBC1-D477F77F69A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA8F31D-5C2C-4221-BBC1-D477F77F69A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA8F31D-5C2C-4221-BBC1-D477F77F69A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA8F31D-5C2C-4221-BBC1-D477F77F69A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DDCE83-1287-4C4A-91E5-DE97DBCBA71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DDCE83-1287-4C4A-91E5-DE97DBCBA71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DDCE83-1287-4C4A-91E5-DE97DBCBA71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DDCE83-1287-4C4A-91E5-DE97DBCBA71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D031DCD6-AC62-4961-B520-B0AB3021254F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D031DCD6-AC62-4961-B520-B0AB3021254F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D031DCD6-AC62-4961-B520-B0AB3021254F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D031DCD6-AC62-4961-B520-B0AB3021254F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02143874-2FC7-49E4-972C-6C7A2370ADE4} = {CBF0C59D-68F8-45D8-95A1-CDB527C6212D}
+	EndGlobalSection
+EndGlobal
