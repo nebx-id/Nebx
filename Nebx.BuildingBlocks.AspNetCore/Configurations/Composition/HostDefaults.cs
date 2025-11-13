@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nebx.BuildingBlocks.AspNetCore.Configurations.Pipeline;
-using Nebx.BuildingBlocks.AspNetCore.EntityFrameworkCore.Configurations.Interceptors;
+using Nebx.BuildingBlocks.AspNetCore.EntityFrameworkCore.Interceptors;
 using Nebx.BuildingBlocks.AspNetCore.Infra.Time;
 using Nebx.BuildingBlocks.AspNetCore.Mediator;
 
