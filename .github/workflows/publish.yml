@@ -1,4 +1,4 @@
-name: Publish All Libraries
+name: Publish Libraries
 
 on:
   push:
@@ -8,37 +8,69 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # needed for pushing git tags
+      contents: write  # Needed for tag push
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # required for MinVer
+          fetch-depth: 0
 
-      - name: Setup .NET SDKs (8 and 10)
+      - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
             8.0.x
             10.0.x
 
-      # --------------------------------
-      # Pack ALL projects in the repo
-      # --------------------------------
-      - name: Find & Pack all projects
+      # --------------------------------------------
+      # 1. Determine version BEFORE packing anything
+      # --------------------------------------------
+      - name: Extract version via MinVer
+        id: version
+        run: |
+          version=$(dotnet minver)
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "Next version: $version"
+
+      # --------------------------------------------
+      # 2. Create + push tag BEFORE pack
+      # --------------------------------------------
+      - name: Create and push Git tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v${{ steps.version.outputs.version }}"
+
+          # If tag already exists, skip
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag already exists: $TAG"
+            exit 0
+          fi
+
+          echo "Creating tag: $TAG"
+          git tag "$TAG"
+
+          echo "Pushing tag..."
+          git push \
+            https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git \
+            "$TAG"
+
+      # --------------------------------------------
+      # 3. Pack ALL projects AFTER tagging
+      # --------------------------------------------
+      - name: Pack all projects
         run: |
           mkdir -p artifacts
-
-          for proj in $(find . -name '*.csproj'); do
+          for proj in $(find . -maxdepth 4 -name "*.csproj"); do
             echo "Packing: $proj"
             dotnet pack "$proj" -c Release -o ./artifacts
           done
 
-      # --------------------------------
-      # Publish all packages
-      # --------------------------------
-      - name: Publish packages to NuGet.org
+      # --------------------------------------------
+      # 4. Publish all packages
+      # --------------------------------------------
+      - name: Publish to NuGet.org
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
@@ -46,27 +78,3 @@ jobs:
             --source https://api.nuget.org/v3/index.json \
             --api-key "$NUGET_API_KEY" \
             --skip-duplicate
-
-      # --------------------------------
-      # Calculate version using MinVer
-      # --------------------------------
-      - name: Extract version via MinVer
-        id: version
-        run: |
-          version=$(dotnet minver)
-          echo "version=$version" >> $GITHUB_OUTPUT
-
-      # --------------------------------
-      # Create + push Git tag
-      # --------------------------------
-      - name: Create Git Tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG="v${{ steps.version.outputs.version }}"
-          echo "Creating tag: $TAG"
-
-          git tag "$TAG"
-          git push \
-            https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git \
-            "$TAG"
