@@ -1,0 +1,64 @@
+name: Publish Changed Libraries
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required for MinVer to read git history
+
+      - name: Setup .NET SDKs (8 and 10)
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Detect changed projects
+        id: changes
+        run: |
+          changed=$(git diff --name-only HEAD~1 HEAD | grep -E '\.csproj$' || true)
+          echo "changed=$changed" >> $GITHUB_OUTPUT
+
+      - name: Display changed projects
+        run:
+          echo "Changed projects: ${{ steps.changes.outputs.changed }}"
+
+      - name: Pack projects
+        if: ${{ steps.changes.outputs.changed != '' }}
+        run: |
+          mkdir -p artifacts
+          for proj in ${{ steps.changes.outputs.changed }}; do
+            echo "Packing $proj"
+            dotnet pack "$proj" -c Release -o ./artifacts
+          done
+
+      - name: Publish to NuGet.org
+        if: ${{ steps.changes.outputs.changed != '' }}
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          dotnet nuget push "./artifacts/*.nupkg" \
+            --source https://api.nuget.org/v3/index.json \
+            --api-key "$NUGET_API_KEY" \
+            --skip-duplicate
+
+      - name: Extract version
+        if: ${{ steps.changes.outputs.changed != '' }}
+        id: version
+        run: |
+          version=$(dotnet minver)
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Create Git Tag
+        if: ${{ steps.changes.outputs.changed != '' }}
+        run: |
+          git tag "v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"

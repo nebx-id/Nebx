@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>Nebx.Labs.Integrations.Email</PackageId>
+        <Title>
+            Abstractions and helpers for SMTP, email templating, and messaging providers.
+        </Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MimeKit" />
+    </ItemGroup>
+
+</Project>
