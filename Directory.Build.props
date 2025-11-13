@@ -2,6 +2,8 @@
 
     <!-- Build settings -->
     <PropertyGroup>
+        <Version>$(MinVerVersion)</Version>
+
         <!-- Treat all warnings as errors -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
