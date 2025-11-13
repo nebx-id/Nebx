@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Hosting;
 
-namespace Nebx.Labs.AspNetCore.Pipeline;
+namespace Nebx.Labs.AspNetCore.Pipelines;
 
 /// <summary>
 /// Provides extension methods for configuring the application host.

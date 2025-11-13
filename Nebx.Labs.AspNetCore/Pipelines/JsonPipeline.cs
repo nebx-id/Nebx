@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.DependencyInjection;
 using MvcJsonOptions = Microsoft.AspNetCore.Mvc.JsonOptions;
 
-namespace Nebx.Labs.AspNetCore.Pipeline;
+namespace Nebx.Labs.AspNetCore.Pipelines;
 
 /// <summary>
 /// Provides extension methods for configuring JSON serialization settings.

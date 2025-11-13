@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Nebx.Labs.AspNetCore.Responses;
 
-namespace Nebx.Labs.AspNetCore.Pipeline;
+namespace Nebx.Labs.AspNetCore.Pipelines;
 
 /// <summary>
 /// Provides extension methods for configuring rate limiter behavior and response handling.

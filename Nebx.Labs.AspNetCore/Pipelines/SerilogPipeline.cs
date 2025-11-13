@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-namespace Nebx.Labs.AspNetCore.Pipeline;
+namespace Nebx.Labs.AspNetCore.Pipelines;
 
 /// <summary>
 /// Provides extension methods for configuring Serilog as the application's
