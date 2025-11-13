@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>8.0.0</Version>
         <PackageId>Nebx.Labs.EntityFrameworkCore</PackageId>
         <Title>
             Enhancements and extensions for Entity Framework Core, including interceptors and common patterns.

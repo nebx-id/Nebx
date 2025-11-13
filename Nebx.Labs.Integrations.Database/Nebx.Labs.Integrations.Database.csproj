@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>8.0.0</Version>
         <PackageId>Nebx.Labs.Integrations.Database</PackageId>
         <Title>
             Database integration helpers for connection handling, resilience, and configuration.

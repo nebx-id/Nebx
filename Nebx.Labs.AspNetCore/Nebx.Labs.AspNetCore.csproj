@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>8.0.0</Version>
         <PackageId>Nebx.Labs.AspNetCore</PackageId>
         <Title>
             A set of foundational ASP.NET Core components that simplify configuration,

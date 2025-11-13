@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>8.0.0</Version>
         <PackageId>Nebx.Labs.Mediator</PackageId>
         <Title>
             Lightweight mediator abstractions and patterns for decoupled application architecture.

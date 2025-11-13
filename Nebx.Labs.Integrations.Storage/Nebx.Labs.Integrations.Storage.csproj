@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>8.0.0</Version>
         <PackageId>Nebx.Labs.Integrations.Storage</PackageId>
         <Title>
             Unified interfaces and helpers for file and blob storage providers.
