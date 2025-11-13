@@ -14,16 +14,6 @@
         </Title>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReadmeFile>README</PackageReadmeFile>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="../LICENSE" Pack="true" PackagePath="" />
-        <None Include="../README.md" Pack="true" PackagePath="" />
-    </ItemGroup>
-
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
@@ -39,6 +29,17 @@
         <PackageReference Include="Serilog.Extensions.Hosting"/>
         <PackageReference Include="Serilog.Settings.Configuration"/>
         <PackageReference Include="Serilog.Sinks.Seq"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="LICENSE">
+        <Pack>true</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
+      <None Update="README.md">
+        <Pack>true</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -13,18 +13,19 @@
         </Title>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReadmeFile>README</PackageReadmeFile>
-    </PropertyGroup>
-
     <ItemGroup>
-        <None Include="../LICENSE" Pack="true" PackagePath="" />
-        <None Include="../README.md" Pack="true" PackagePath="" />
+      <PackageReference Include="MimeKit" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MimeKit" />
+      <None Update="LICENSE">
+        <Pack>true</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
+      <None Update="README.md">
+        <Pack>true</Pack>
+        <PackagePath>/</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>
