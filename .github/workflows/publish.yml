@@ -12,21 +12,27 @@ jobs:
 
     steps:
       # -----------------------------
-      # Checkout full repo + history
+      # Checkout with full history + tags
       # -----------------------------
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
-      # -----------------------------
-      # Fetch tags so MinVer can see them
-      # -----------------------------
       - name: Fetch tags
         run: git fetch --tags --force
 
       # -----------------------------
-      # Install .NET SDKs
+      # Configure Git user (required for tagging)
+      # -----------------------------
+      - name: Configure Git user
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "github-actions"
+
+      # -----------------------------
+      # Install .NET SDKs (8 and 10)
       # -----------------------------
       - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
@@ -42,7 +48,7 @@ jobs:
         run: dotnet tool install --global minver-cli
 
       # -----------------------------
-      # Determine version
+      # Determine version using MinVer
       # -----------------------------
       - name: Extract version
         id: version
@@ -53,7 +59,7 @@ jobs:
           echo "Using version: $VERSION"
 
       # -----------------------------
-      # Pack all .csproj files
+      # Pack all .csproj
       # -----------------------------
       - name: Pack projects
         run: |
@@ -79,7 +85,7 @@ jobs:
             --skip-duplicate
 
       # -----------------------------
-      # Create Git tag for release
+      # Create Git Tag
       # -----------------------------
       - name: Create Git Tag
         env:
@@ -87,6 +93,7 @@ jobs:
         run: |
           TAG="v${{ steps.version.outputs.version }}"
           echo "Creating tag $TAG"
+
           git tag -a "$TAG" -m "Release $TAG" || true
           git push \
             https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git \
