@@ -17,8 +17,4 @@
       <PackageReference Include="WebDav.Client" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Providers\" />
-    </ItemGroup>
-
 </Project>

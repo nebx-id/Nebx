@@ -13,15 +13,4 @@
         </Title>
     </PropertyGroup>
 
-    <ItemGroup>
-      <None Update="LICENSE">
-        <Pack>true</Pack>
-        <PackagePath>/</PackagePath>
-      </None>
-      <None Update="README.md">
-        <Pack>true</Pack>
-        <PackagePath>/</PackagePath>
-      </None>
-    </ItemGroup>
-
 </Project>
