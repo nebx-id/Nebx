@@ -8,7 +8,6 @@
         <!-- NuGet metadata -->
         <Authors>Enrico Fathahillah Roselino</Authors>
         <Company>Nebx</Company>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>Reusable components that simplify and accelerate application development.</Description>
 
@@ -20,7 +19,7 @@
         <IsPackable>true</IsPackable>
 
         <!-- Repo metadata -->
-        <RepositoryUrl>https://github.com/your-org/your-repo</RepositoryUrl>
+        <RepositoryUrl>https://github.com/nebx-id/nebx-labs</RepositoryUrl>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
@@ -33,7 +32,7 @@
 
     <!-- Package references -->
     <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all" />
+        <PackageReference Include="MinVer" PrivateAssets="all"/>
     </ItemGroup>
 
 </Project>

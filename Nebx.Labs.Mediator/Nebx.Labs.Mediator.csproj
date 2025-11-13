@@ -13,6 +13,16 @@
         </Title>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE" Pack="true" PackagePath="" />
+        <None Include="../../README.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+
     <ItemGroup>
         <ProjectReference Include="..\Nebx.Labs.Core\Nebx.Labs.Core.csproj"/>
     </ItemGroup>
