@@ -52,9 +52,4 @@
         </AssemblyAttribute>
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Nebx.EntityFrameworkCore\Nebx.EntityFrameworkCore.csproj" />
-      <ProjectReference Include="..\Nebx.Utilities\Nebx.Utilities.csproj" />
-    </ItemGroup>
-
 </Project>
