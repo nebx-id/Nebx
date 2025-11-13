@@ -1,4 +1,4 @@
-name: Publish Changed Libraries
+name: Publish All Libraries
 
 on:
   push:
@@ -8,13 +8,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # REQUIRED for pushing tags
+      contents: write  # needed for pushing git tags
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for MinVer
+          fetch-depth: 0  # required for MinVer
 
       - name: Setup .NET SDKs (8 and 10)
         uses: actions/setup-dotnet@v3
@@ -23,51 +23,22 @@ jobs:
             8.0.x
             10.0.x
 
-      # -------------------------------
-      # Detect changed project folders
-      # -------------------------------
-      - name: Detect changed projects
-        id: detect
-        run: |
-          echo "Detecting changed project files..."
-
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
-
-          PROJECTS=""
-          for file in $CHANGED_FILES; do
-            DIR=$(dirname "$file")
-            PROJ=$(find "$DIR" -maxdepth 1 -name '*.csproj' | head -n 1 || true)
-
-            if [ -n "$PROJ" ]; then
-              PROJECTS="$PROJECTS $PROJ"
-            fi
-          done
-
-          # Deduplicate
-          UNIQUE=$(echo "$PROJECTS" | tr ' ' '\n' | sort -u | tr '\n' ' ')
-          echo "projects=$UNIQUE" >> $GITHUB_OUTPUT
-
-      - name: Display detected projects
-        run: |
-          echo "Detected projects: '${{ steps.detect.outputs.projects }}'"
-
-      # -------------------------------------
-      # Pack only changed project(s)
-      # -------------------------------------
-      - name: Pack projects
-        if: ${{ steps.detect.outputs.projects != '' }}
+      # --------------------------------
+      # Pack ALL projects in the repo
+      # --------------------------------
+      - name: Find & Pack all projects
         run: |
           mkdir -p artifacts
-          for proj in ${{ steps.detect.outputs.projects }}; do
+
+          for proj in $(find . -name '*.csproj'); do
             echo "Packing: $proj"
             dotnet pack "$proj" -c Release -o ./artifacts
           done
 
-      # -------------------------------------
-      # Publish to NuGet
-      # -------------------------------------
-      - name: Publish to NuGet.org
-        if: ${{ steps.detect.outputs.projects != '' }}
+      # --------------------------------
+      # Publish all packages
+      # --------------------------------
+      - name: Publish packages to NuGet.org
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
@@ -76,31 +47,26 @@ jobs:
             --api-key "$NUGET_API_KEY" \
             --skip-duplicate
 
-      # -------------------------------------
-      # Extract semantic version from MinVer
-      # -------------------------------------
-      - name: Extract version
-        if: ${{ steps.detect.outputs.projects != '' }}
+      # --------------------------------
+      # Calculate version using MinVer
+      # --------------------------------
+      - name: Extract version via MinVer
         id: version
         run: |
           version=$(dotnet minver)
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      # -------------------------------------
-      # Create and push Git tag
-      # (Works reliably in 2025)
-      # -------------------------------------
+      # --------------------------------
+      # Create + push Git tag
+      # --------------------------------
       - name: Create Git Tag
-        if: ${{ steps.detect.outputs.projects != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="v${{ steps.version.outputs.version }}"
-
           echo "Creating tag: $TAG"
-          git tag "$TAG"
 
-          echo "Pushing tag via authenticated URL..."
+          git tag "$TAG"
           git push \
             https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git \
             "$TAG"
