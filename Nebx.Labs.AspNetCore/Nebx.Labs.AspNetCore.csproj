@@ -20,7 +20,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Nebx.Labs.Core\Nebx.Labs.Core.csproj"/>
-        <ProjectReference Include="..\Nebx.Labs.Mediator\Nebx.Labs.Mediator.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
