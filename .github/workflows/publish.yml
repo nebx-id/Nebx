@@ -8,11 +8,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # required for pushing tags
+      contents: write
 
     steps:
       # -----------------------------
-      # Checkout with full Git history
+      # Checkout full repo + history
       # -----------------------------
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,7 +20,13 @@ jobs:
           fetch-depth: 0
 
       # -----------------------------
-      # Install .NET SDKs (8 and 10)
+      # Fetch tags so MinVer can see them
+      # -----------------------------
+      - name: Fetch tags
+        run: git fetch --tags --force
+
+      # -----------------------------
+      # Install .NET SDKs
       # -----------------------------
       - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
@@ -30,13 +36,13 @@ jobs:
             10.0.x
 
       # -----------------------------
-      # Install MinVer CLI (required)
+      # Install MinVer CLI
       # -----------------------------
       - name: Install MinVer CLI
         run: dotnet tool install --global minver-cli
 
       # -----------------------------
-      # Determine version for ALL packages
+      # Determine version
       # -----------------------------
       - name: Extract version
         id: version
@@ -47,7 +53,7 @@ jobs:
           echo "Using version: $VERSION"
 
       # -----------------------------
-      # Pack ALL .csproj files
+      # Pack all .csproj files
       # -----------------------------
       - name: Pack projects
         run: |
@@ -61,7 +67,7 @@ jobs:
           done
 
       # -----------------------------
-      # Publish artifacts to NuGet
+      # Publish to NuGet
       # -----------------------------
       - name: Publish to NuGet.org
         env:
@@ -73,7 +79,7 @@ jobs:
             --skip-duplicate
 
       # -----------------------------
-      # Create Git Tag for this version
+      # Create Git tag for release
       # -----------------------------
       - name: Create Git Tag
         env:
@@ -81,8 +87,7 @@ jobs:
         run: |
           TAG="v${{ steps.version.outputs.version }}"
           echo "Creating tag $TAG"
-
-          git tag "$TAG"
+          git tag -a "$TAG" -m "Release $TAG" || true
           git push \
             https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git \
-            "$TAG"
+            "$TAG" || true

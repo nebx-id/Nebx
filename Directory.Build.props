@@ -2,8 +2,6 @@
 
     <!-- Build settings -->
     <PropertyGroup>
-        <Version>$(MinVerVersion)</Version>
-
         <!-- Treat all warnings as errors -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
@@ -43,8 +41,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="LICENSE" Pack="true" PackagePath="\" Condition="Exists('LICENSE')" />
-        <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')" />
+        <None Include="LICENSE" Pack="true" PackagePath="\" Condition="Exists('LICENSE')"/>
+        <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')"/>
     </ItemGroup>
 
 </Project>
