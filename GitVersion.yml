@@ -2,13 +2,17 @@ next-version: 8.0.0
 mode: ContinuousDeployment
 
 branches:
+
   main:
+    mode: ContinuousDeployment
     regex: ^main$
     label: ''
     increment: Patch
     is-release-branch: true
+    pre-release-weight: 0
 
   staging:
+    mode: ContinuousDeployment
     regex: ^staging$
     label: preview
     increment: Patch
@@ -16,6 +20,7 @@ branches:
     pre-release-weight: 1000
 
   feature:
+    mode: ContinuousDeployment
     regex: ^feature/.*
     label: preview
     increment: Patch
