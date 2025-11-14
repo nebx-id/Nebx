@@ -1,4 +1,4 @@
-name: Build & Publish NuGet All Libraries
+name: Build & Publish NuGet (2025)
 
 on:
   push:
@@ -20,22 +20,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # required for GitVersion
+          fetch-depth: 0   # required for GitVersion to detect tags/history
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: 8.0.x
 
+      # -----------------------------
+      # GitVersion
+      # -----------------------------
       - name: Setup GitVersion
         uses: GitTools/actions/gitversion/setup@v3
         with:
-          versionSpec: "6.x"
+          versionSpec: '6.x'
 
       - name: Determine Version
         id: gitversion
         uses: GitTools/actions/gitversion/execute@v3
 
+      - name: Print Version Info
+        run: |
+          echo "FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}"
+          echo "NuGetVersion: ${{ steps.gitversion.outputs.NuGetVersion }}"
+          echo "Branch: ${{ steps.gitversion.outputs.BranchName }}"
+
+      # -----------------------------
+      # Build
+      # -----------------------------
       - name: Restore
         run: dotnet restore
 
@@ -46,15 +58,22 @@ jobs:
             /p:AssemblyVersion=${{ steps.gitversion.outputs.AssemblySemVer }} \
             /p:FileVersion=${{ steps.gitversion.outputs.AssemblySemFileVer }}
 
+      # -----------------------------
+      # Pack
+      # -----------------------------
       - name: Pack
         run: |
           dotnet pack --configuration Release \
             -o out \
-            /p:Version=${{ steps.gitversion.outputs.FullSemVer }}
+            /p:Version=${{ steps.gitversion.outputs.FullSemVer }} \
+            /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
 
+      # -----------------------------
+      # Publish NuGet (main + staging only)
+      # -----------------------------
       - name: Publish to NuGet
         if: |
-          github.ref == 'refs/heads/main' ||
+          github.ref == 'refs/heads/main' || 
           github.ref == 'refs/heads/staging'
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}

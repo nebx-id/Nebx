@@ -23,18 +23,6 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
-    <!-- MinVer versioning settings -->
-    <PropertyGroup>
-        <MinVerTagPrefix>v</MinVerTagPrefix>
-        <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
-        <MinVerAutoIncrement>patch</MinVerAutoIncrement>
-    </PropertyGroup>
-
-    <!-- Package references -->
-    <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all"/>
-    </ItemGroup>
-
     <PropertyGroup>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
