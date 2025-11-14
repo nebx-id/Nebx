@@ -1,58 +1,47 @@
-name: Publish NuGet Packages
+name: Publish NuGet (MinVer 6)
 
 on:
   push:
-    tags:
-      - 'v*'          # Stable releases: v8.0.3, v8.0.4, etc.
     branches:
-      - staging       # Preview builds only
+      - staging
+    tags:
+      - "*"   # e.g. 8.0.0 or v8.0.0
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # MinVer needs full history
 
-      # Use .NET SDK from global.json
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          global-json-file: global.json
+          dotnet-version: "8.0.x"
 
-      # Determine version
-      - name: Compute version
-        id: version
-        run: |
-          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
-            # Stable release from tag
-            VERSION=${GITHUB_REF#refs/tags/v}
-          else
-            # Preview build from staging
-            BASE_VERSION=$(jq -r '.sdk.version' global.json | cut -d. -f1-3)
-            VERSION="${BASE_VERSION}-preview.staging.${GITHUB_RUN_NUMBER}"
-          fi
-
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Using version: $VERSION"
-
-      # Restore dependencies
       - name: Restore
         run: dotnet restore
 
-      # Build
       - name: Build
-        run: dotnet build -c Release /p:Version=${VERSION} --no-restore
+        run: dotnet build -c Release --no-restore
 
-      # Pack
-      - name: Pack
-        run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output ./nupkgs
-
-      # Push to NuGet.org
-      - name: Push to NuGet.org
+      - name: Pack using MinVer
         run: |
-          dotnet nuget push "./nupkgs/*.nupkg" \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
+          mkdir -p artifacts
+          for proj in $(find . -name "*.csproj"); do
+            echo "Packing: $proj"
+            dotnet pack "$proj" \
+              -c Release \
+              --no-build \
+              -o ./artifacts
+          done
+
+      - name: Push to NuGet
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" \
+            --api-key "${{ secrets.NUGET_API_KEY }}" \
             --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate

@@ -2,9 +2,6 @@
 
     <!-- Build settings -->
     <PropertyGroup>
-        <!-- Default starting version -->
-        <Version>8.0.3</Version>
-
         <!-- Treat all warnings as errors -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
@@ -34,6 +31,22 @@
     <ItemGroup>
         <None Include="LICENSE" Pack="true" PackagePath="\" Condition="Exists('LICENSE')"/>
         <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <MinVerAutoIncrement>patch</MinVerAutoIncrement>
+        <MinVerTagPrefix>v</MinVerTagPrefix> <!-- optional -->
+        <MinVerMajorMinor>8.0</MinVerMajorMinor> <!-- optional baseline -->
+        <MinVerVerbosity>normal</MinVerVerbosity>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_REF)' == 'refs/heads/staging'">
+        <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerPreReleaseNumber>$(GITHUB_RUN_NUMBER)</MinVerPreReleaseNumber>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MinVer" PrivateAssets="all"/>
     </ItemGroup>
 
 </Project>
