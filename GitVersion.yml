@@ -13,8 +13,8 @@ branches:
     label: preview
     increment: Patch
     is-release-branch: false
-    pre-release-weight: 1000
     tracks-release-branches: false
+    pre-release-weight: 1000
 
   feature:
     regex: ^feature/
