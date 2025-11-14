@@ -1,58 +1,40 @@
-name: Publish NuGet Packages
+name: Release
 
 on:
   push:
     tags:
-      - 'v*'          # Stable releases: v8.0.3, v8.0.4, etc.
-    branches:
-      - staging       # Preview builds only
+      - 'v*'   # e.g., v8.0.3
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # Use .NET SDK from global.json
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           global-json-file: global.json
 
-      # Determine version
-      - name: Compute version
+      - name: Extract Version From Tag
         id: version
         run: |
-          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
-            # Stable release from tag
-            VERSION=${GITHUB_REF#refs/tags/v}
-          else
-            # Preview build from staging
-            BASE_VERSION=$(jq -r '.sdk.version' global.json | cut -d. -f1-3)
-            VERSION="${BASE_VERSION}-preview.staging.${GITHUB_RUN_NUMBER}"
-          fi
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "Using tag version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "Using version: $VERSION"
-
-      # Restore dependencies
       - name: Restore
         run: dotnet restore
 
-      # Build
       - name: Build
-        run: dotnet build -c Release /p:Version=${VERSION} --no-restore
+        run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.version.outputs.version }} /p:ContinuousIntegrationBuild=true
 
-      # Pack
       - name: Pack
-        run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output ./nupkgs
+        run: dotnet pack --configuration Release /p:Version=${{ steps.version.outputs.version }} --no-build --output ./artifacts
 
-      # Push to NuGet.org
-      - name: Push to NuGet.org
-        run: |
-          dotnet nuget push "./nupkgs/*.nupkg" \
-            --api-key ${{ secrets.NUGET_API_KEY }} \
-            --source "https://api.nuget.org/v3/index.json" \
-            --skip-duplicate
+      - name: Publish to NuGet
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
