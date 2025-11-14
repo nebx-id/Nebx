@@ -1,40 +1,43 @@
-name: Release
+name: Publish NuGet (MinVer 6)
 
 on:
   push:
     tags:
-      - 'v*'   # e.g., v8.0.3
+      - "*"   # only runs when you push a tag like 8.0.0 or v8.0.0
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0   # IMPORTANT: MinVer needs history + tags
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v4
         with:
-          global-json-file: global.json
-
-      - name: Extract Version From Tag
-        id: version
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "Using tag version: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          dotnet-version: "8.0.x"
 
       - name: Restore
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.version.outputs.version }} /p:ContinuousIntegrationBuild=true
+        run: dotnet build -c Release --no-restore
 
-      - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${{ steps.version.outputs.version }} --no-build --output ./artifacts
+      - name: Pack using MinVer
+        run: |
+          mkdir -p artifacts
+          for proj in $(find . -name "*.csproj"); do
+            echo "Packing: $proj"
+            dotnet pack "$proj" \
+              -c Release \
+              --no-build \
+              -o ./artifacts
+          done
 
-      - name: Publish to NuGet
-        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: Push to NuGet
+        run: dotnet nuget push "artifacts/*.nupkg" \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --source https://api.nuget.org/v3/index.json
