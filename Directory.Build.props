@@ -2,6 +2,9 @@
 
     <!-- Build settings -->
     <PropertyGroup>
+        <!-- Default starting version -->
+        <Version>8.0.3</Version>
+
         <!-- Treat all warnings as errors -->
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 

@@ -1,84 +1,58 @@
-name: Build & Publish NuGet (2025)
+name: Publish NuGet Packages
 
 on:
   push:
+    tags:
+      - 'v*'          # Stable releases: v8.0.3, v8.0.4, etc.
     branches:
-      - main
-      - staging
-      - feature/**
-
-permissions:
-  contents: read
-  packages: write
+      - staging       # Preview builds only
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # required for GitVersion to detect tags/history
+      # Checkout repo
+      - uses: actions/checkout@v4
 
+      # Use .NET SDK from global.json
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          global-json-file: global.json
 
-      # -----------------------------
-      # GitVersion
-      # -----------------------------
-      - name: Setup GitVersion
-        uses: GitTools/actions/gitversion/setup@v3
-        with:
-          versionSpec: '6.x'
-
-      - name: Determine Version
-        id: gitversion
-        uses: GitTools/actions/gitversion/execute@v3
-
-      - name: Print Version Info
+      # Determine version
+      - name: Compute version
+        id: version
         run: |
-          echo "FullSemVer: ${{ steps.gitversion.outputs.FullSemVer }}"
-          echo "NuGetVersion: ${{ steps.gitversion.outputs.NuGetVersion }}"
-          echo "Branch: ${{ steps.gitversion.outputs.BranchName }}"
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            # Stable release from tag
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            # Preview build from staging
+            BASE_VERSION=$(jq -r '.sdk.version' global.json | cut -d. -f1-3)
+            VERSION="${BASE_VERSION}-preview.staging.${GITHUB_RUN_NUMBER}"
+          fi
 
-      # -----------------------------
-      # Build
-      # -----------------------------
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Using version: $VERSION"
+
+      # Restore dependencies
       - name: Restore
         run: dotnet restore
 
+      # Build
       - name: Build
-        run: |
-          dotnet build --configuration Release \
-            /p:Version=${{ steps.gitversion.outputs.FullSemVer }} \
-            /p:AssemblyVersion=${{ steps.gitversion.outputs.AssemblySemVer }} \
-            /p:FileVersion=${{ steps.gitversion.outputs.AssemblySemFileVer }}
+        run: dotnet build -c Release /p:Version=${VERSION} --no-restore
 
-      # -----------------------------
       # Pack
-      # -----------------------------
       - name: Pack
-        run: |
-          dotnet pack --configuration Release \
-            -o out \
-            /p:Version=${{ steps.gitversion.outputs.FullSemVer }} \
-            /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+        run: dotnet pack -c Release /p:Version=${VERSION} --no-build --output ./nupkgs
 
-      # -----------------------------
-      # Publish NuGet (main + staging only)
-      # -----------------------------
-      - name: Publish to NuGet
-        if: |
-          github.ref == 'refs/heads/main' || 
-          github.ref == 'refs/heads/staging'
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      # Push to NuGet.org
+      - name: Push to NuGet.org
         run: |
-          dotnet nuget push "out/*.nupkg" \
-            --source https://api.nuget.org/v3/index.json \
-            --api-key "$NUGET_API_KEY" \
+          dotnet nuget push "./nupkgs/*.nupkg" \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source "https://api.nuget.org/v3/index.json" \
             --skip-duplicate
