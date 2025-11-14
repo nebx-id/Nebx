@@ -40,6 +40,11 @@
         <MinVerVerbosity>normal</MinVerVerbosity>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(GITHUB_REF)' == 'refs/heads/staging'">
+        <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+        <MinVerPreReleaseNumber>$(GITHUB_RUN_NUMBER)</MinVerPreReleaseNumber>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="MinVer" PrivateAssets="all"/>
     </ItemGroup>
