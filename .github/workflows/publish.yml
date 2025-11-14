@@ -1,4 +1,4 @@
-name: Publish NuGet (MinVer 6)
+name: Publish NuGet Packages
 
 on:
   push:
@@ -34,7 +34,20 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          global-json-file: global.json
+
+      # Determine version
+      - name: Compute version
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            # Stable release from tag
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            # Preview build from staging
+            BASE_VERSION=$(jq -r '.sdk.version' global.json | cut -d. -f1-3)
+            VERSION="${BASE_VERSION}-preview.staging.${GITHUB_RUN_NUMBER}"
+          fi
 
       # -----------------------------
       # 4. Restore
@@ -46,7 +59,7 @@ jobs:
       # 5. Build
       # -----------------------------
       - name: Build
-        run: dotnet build -c Release --no-restore
+        run: dotnet build -c Release /p:Version=${VERSION} --no-restore
 
       # -----------------------------
       # 6. Pack using MinVer (auto-version)
