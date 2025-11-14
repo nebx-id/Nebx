@@ -1,0 +1,16 @@
+next-version: 8.0.0
+mode: ContinuousDeployment
+
+branches:
+  main:
+    tag: ''
+    increment: Patch
+
+  staging:
+    tag: preview
+    increment: Patch
+
+  feature:
+    tag: preview
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
