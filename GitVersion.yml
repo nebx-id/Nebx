@@ -3,14 +3,23 @@ mode: ContinuousDeployment
 
 branches:
   main:
-    tag: ''
+    regex: ^main$
+    label: ''
     increment: Patch
+    is-release-branch: true
 
   staging:
-    tag: preview
+    regex: ^staging$
+    label: preview
     increment: Patch
+    is-release-branch: false
+    pre-release-weight: 1000
+    tracks-release-branches: false
 
   feature:
-    tag: preview
+    regex: ^feature/
+    label: preview
     increment: Patch
-    prevent-increment-of-merged-branch-version: true
+
+ignore:
+  sha: []
