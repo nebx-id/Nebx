@@ -1,4 +1,4 @@
-﻿namespace Nebx.Labs.AspNetCore.Failures;
+﻿namespace Nebx.Labs.AspNetCore.Failures.Http;
 
 /// <summary>
 /// Represents a standardized HTTP failure with a status code, title, and detailed message.

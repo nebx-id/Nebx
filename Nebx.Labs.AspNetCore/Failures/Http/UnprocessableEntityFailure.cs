@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace Nebx.Labs.AspNetCore.Failures;
+namespace Nebx.Labs.AspNetCore.Failures.Http;
 
 /// <summary>
 /// Represents an HTTP 422 Unprocessable Entity failure.

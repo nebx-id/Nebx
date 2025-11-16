@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Http;
+using Nebx.Labs.AspNetCore.Failures.Http;
 using Nebx.Labs.AspNetCore.Responses;
 
-namespace Nebx.Labs.AspNetCore.Failures;
+namespace Nebx.Labs.AspNetCore.Failures.Extensions;
 
 /// <summary>
 /// Provides extension methods for converting <see cref="HttpFailure"/> instances
