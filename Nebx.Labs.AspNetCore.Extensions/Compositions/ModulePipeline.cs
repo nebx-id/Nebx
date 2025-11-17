@@ -1,7 +1,6 @@
 using System.Reflection;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Nebx.Labs.AspNetCore.Compositions.Endpoints;
 using Nebx.Labs.Mediator;
 
 namespace Nebx.Labs.AspNetCore.Extensions.Compositions;
@@ -20,7 +19,6 @@ public static class ModulePipeline
     /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection AddModuleDependencies(this IServiceCollection services, Assembly assembly)
     {
-        services.AddEndpoints(assembly);
         services.AddMediator(assembly);
         services.AddValidatorsFromAssembly(assembly);
 
