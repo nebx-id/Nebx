@@ -23,14 +23,9 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-    </PropertyGroup>
-
     <ItemGroup>
-        <None Include="LICENSE" Pack="true" PackagePath="\" Condition="Exists('LICENSE')"/>
-        <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')"/>
+        <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="LICENSE" />
+        <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="README.md" />
     </ItemGroup>
 
     <PropertyGroup>
