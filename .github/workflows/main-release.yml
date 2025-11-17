@@ -1,0 +1,57 @@
+name: Publish Stable Packages (NuGet)
+
+on:
+  push:
+    tags:
+      - "v*"   # tags ONLY
+
+jobs:
+  publish-stable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch full history & tags
+        run: |
+          git fetch --prune --unshallow || true
+          git fetch --tags --force
+
+      - name: Ensure stable tag (no preview)
+        run: |
+          TAG="${GITHUB_REF#refs/tags/v}"
+          if [[ "$TAG" == *-preview* ]]; then
+            echo "Preview tag detected. This workflow is only for stable releases."
+            exit 1
+          fi
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Pack using MinVer
+        run: |
+          mkdir -p artifacts
+          for proj in $(find . -name "*.csproj"); do
+            dotnet pack "$proj" \
+              -c Release \
+              --no-build \
+              -o ./artifacts
+          done
+
+      - name: Push to NuGet.org
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" \
+            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --source "https://api.nuget.org/v3/index.json" \
+            --skip-duplicate

@@ -35,18 +35,13 @@
 
     <PropertyGroup>
         <MinVerAutoIncrement>patch</MinVerAutoIncrement>
-        <MinVerTagPrefix>v</MinVerTagPrefix> <!-- optional -->
-        <MinVerMajorMinor>8.0</MinVerMajorMinor> <!-- optional baseline -->
-        <MinVerVerbosity>normal</MinVerVerbosity>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(GITHUB_REF)' == 'refs/heads/staging'">
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        <MinVerMajorMinor>8.0</MinVerMajorMinor> <!-- optional -->
         <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
-        <MinVerPreReleaseNumber>$(GITHUB_RUN_NUMBER)</MinVerPreReleaseNumber>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MinVer" PrivateAssets="all"/>
+        <PackageReference Include="MinVer" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
