@@ -1,0 +1,54 @@
+name: Publish Preview Packages (GitHub Packages)
+
+on:
+  push:
+    branches:
+      - staging
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
+jobs:
+  publish-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch full history & tags
+        run: |
+          git fetch --prune --unshallow || true
+          git fetch --tags --force
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Pack using MinVer
+        run: |
+          mkdir -p artifacts
+          for proj in $(find . -name "*.csproj"); do
+            dotnet pack "$proj" \
+              -c Release \
+              --no-build \
+              -o ./artifacts
+          done
+
+      - name: Push to GitHub Packages
+        run: |
+          dotnet nuget push "artifacts/*.nupkg" \
+            --api-key "${{ github.token }}" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --skip-duplicate
