@@ -21,11 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Builds", "Builds", "{CBF0C5
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{02143874-2FC7-49E4-972C-6C7A2370ADE4}"
-	ProjectSection(SolutionItems) = preProject
-		.github\workflows\publish.yml = .github\workflows\publish.yml
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +57,5 @@ Global
 		{D031DCD6-AC62-4961-B520-B0AB3021254F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{02143874-2FC7-49E4-972C-6C7A2370ADE4} = {CBF0C59D-68F8-45D8-95A1-CDB527C6212D}
 	EndGlobalSection
 EndGlobal
