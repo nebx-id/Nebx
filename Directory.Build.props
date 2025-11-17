@@ -23,10 +23,10 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="LICENSE" />
+        <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="README.md" />
+    </ItemGroup>
 
     <PropertyGroup>
         <MinVerAutoIncrement>patch</MinVerAutoIncrement>
